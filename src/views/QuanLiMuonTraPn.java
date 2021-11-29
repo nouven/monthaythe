@@ -4,7 +4,10 @@
  */
 package views;
 
+import controllers.DanhMucDao;
 import controllers.DocGiaDao;
+import controllers.MuonTraDao;
+import controllers.SachDao;
 import foo.Bar;
 import foo.MessDialog;
 import foo.Validator;
@@ -14,72 +17,81 @@ import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import models.DanhMuc;
 import models.DocGia;
+import models.MuonTra;
+import models.Sach;
 
 /**
  *
  * @author doquy
  */
-public class QuanLiDocGiaPn extends javax.swing.JPanel {
+public class QuanLiMuonTraPn extends javax.swing.JPanel {
 
 	/**
 	 * Creates new form FisrtPn
 	 */
-	private ArrayList<DocGia> list;
+	private ArrayList<MuonTra> list;
 	private String[] headerTbl = {
+		"MA SACH",
 		"MA DOC GIA",
-		"HO TEN",
-		"NGAY SINH",
-		"GIOI TINH",
-		"EMAIL",
+		"MA THU THU",
+		"NGAY MUON",
+		"SO NGAY MUON",
+		"NGAY THUC TRA",
 	};
+	private boolean btnThemSua = false;
+	private String maThuThu;
 	private DefaultTableModel model = new DefaultTableModel();
-	private DocGiaDao dao = new DocGiaDao();
-	private boolean  toggleLuu = false;
-	public QuanLiDocGiaPn() {
+	private MuonTraDao dao = new MuonTraDao();
+	private SachDao sachDao = new SachDao();
+	private DocGiaDao docGiaDao = new DocGiaDao();
+	public QuanLiMuonTraPn(String maThuThu) {
 		list = new ArrayList<>();
 		list = dao.selectAll();
 		initComponents();
-		initTbl(model, tblDocGia, headerTbl, list);
+		initTbl(model, tblMuonTra, headerTbl, list);
+		this.maThuThu = maThuThu;
 		this.setDisable();
 	}
-	private void initTbl(DefaultTableModel model , JTable tbl, String[] headerTbl, ArrayList<DocGia> list){
+	public void setEnable(){
+		txtMaSach.setEnabled(true);
+		txtMaDocGia.setEnabled(true);
+		spnSoNgayMuon.setEnabled(true);
+		txtTinhTrang.setEnabled(false);
+		txtTenDocGia.setEnabled(false);
+		txtTenSach.setEnabled(false);
+		txtNgayMuon.setEnabled(false);
+		txtNgayThucTra.setEnabled(false);
+	}
+	public void setDisable(){
+		txtMaSach.setEnabled(true);
+		txtMaDocGia.setEnabled(true);
+		spnSoNgayMuon.setEnabled(false);
+		txtTinhTrang.setEnabled(false);
+		txtTenDocGia.setEnabled(false);
+		txtTenSach.setEnabled(false);
+		txtNgayMuon.setEnabled(false);
+		txtNgayThucTra.setEnabled(false);
+	}
+	private void initTbl(DefaultTableModel model , JTable tbl, String[] headerTbl, ArrayList<MuonTra> list){
 		model.setRowCount(0);
 		model.setColumnIdentifiers(headerTbl);
 		list.forEach((elmt) -> {
-			String gioiTinh = "Nam";
-			if(elmt.getGoiTinh() == 0){
-				gioiTinh = "nu";
+			String ngayThucTra = elmt.getNgayThucTra().toString();
+			if(ngayThucTra.equals("2000-02-02")){
+				ngayThucTra = "null";
 			}
 			model.addRow(new Object[]{
+				elmt.getMaSach(),
 				elmt.getMaDocGia(),
-				elmt.getHoTen(),
-				elmt.getNgaySinh(),
-				gioiTinh,
-				elmt.getEmail(),
+				elmt.getMaThuThu(),
+				elmt.getNgayMuon(),
+				elmt.getSoNgayMuon(),
+				ngayThucTra
 			});
 		});
 		tbl.setModel(model);
-	}
-	public void setEnable(){
-   		txtDiaChi.setEnabled(true);
-   		txtEmail.setEnabled(true);
-   		txtHoTen.setEnabled(true);
-   		txtMaDocGia.setEnabled(true);
-   		txtNgaySinh.setEnabled(true);
-   		txtSdt.setEnabled(true);
-			rdbNam.setEnabled(true);
-			rdbNu.setEnabled(true);
-	}
-	public void setDisable(){
-   		txtDiaChi.setEnabled(false);
-   		txtEmail.setEnabled(false);
-   		txtHoTen.setEnabled(false);
-   		txtMaDocGia.setEnabled(true);
-   		txtNgaySinh.setEnabled(false);
-   		txtSdt.setEnabled(false);
-			rdbNam.setEnabled(false);
-			rdbNu.setEnabled(false);
 	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -93,54 +105,47 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
       jSeparator1 = new javax.swing.JSeparator();
       jSeparator2 = new javax.swing.JSeparator();
       jScrollPane1 = new javax.swing.JScrollPane();
-      tblDocGia = new javax.swing.JTable();
+      tblMuonTra = new javax.swing.JTable();
       jSeparator3 = new javax.swing.JSeparator();
       jPanel4 = new javax.swing.JPanel();
       btnThem = new javax.swing.JButton();
       btnXoa = new javax.swing.JButton();
       btnTimKiem = new javax.swing.JButton();
-      btnSua = new javax.swing.JButton();
+      btnTraSach = new javax.swing.JButton();
       btnLuu = new javax.swing.JButton();
       jSeparator4 = new javax.swing.JSeparator();
       jPanel3 = new javax.swing.JPanel();
       jPanel2 = new javax.swing.JPanel();
       jLabel6 = new javax.swing.JLabel();
-      txtMaDocGia = new javax.swing.JTextField();
+      txtMaSach = new javax.swing.JTextField();
       jPanel7 = new javax.swing.JPanel();
       jLabel8 = new javax.swing.JLabel();
-      txtHoTen = new javax.swing.JTextField();
-      jPanel8 = new javax.swing.JPanel();
-      jLabel9 = new javax.swing.JLabel();
-      rdbNam = new javax.swing.JRadioButton();
-      rdbNu = new javax.swing.JRadioButton();
-      jPanel9 = new javax.swing.JPanel();
-      jLabel10 = new javax.swing.JLabel();
-      txtNgaySinh = new javax.swing.JTextField();
+      txtMaDocGia = new javax.swing.JTextField();
       jPanel11 = new javax.swing.JPanel();
       jLabel12 = new javax.swing.JLabel();
-      jTextField8 = new javax.swing.JTextField();
+      spnSoNgayMuon = new javax.swing.JSpinner();
       jPanel12 = new javax.swing.JPanel();
       jPanel13 = new javax.swing.JPanel();
       jLabel13 = new javax.swing.JLabel();
-      txtSdt = new javax.swing.JTextField();
+      txtNgayMuon = new javax.swing.JTextField();
       jPanel14 = new javax.swing.JPanel();
       jLabel14 = new javax.swing.JLabel();
-      txtEmail = new javax.swing.JTextField();
+      txtTinhTrang = new javax.swing.JTextField();
       jPanel15 = new javax.swing.JPanel();
-      jLabel15 = new javax.swing.JLabel();
-      jTextField11 = new javax.swing.JTextField();
-      jPanel16 = new javax.swing.JPanel();
-      jLabel16 = new javax.swing.JLabel();
-      txtDiaChi = new javax.swing.JTextField();
+      lsldslfasdf = new javax.swing.JLabel();
+      txtNgayThucTra = new javax.swing.JTextField();
       jPanel17 = new javax.swing.JPanel();
       jLabel17 = new javax.swing.JLabel();
-      jTextField13 = new javax.swing.JTextField();
+      txtTenSach = new javax.swing.JTextField();
+      jPanel18 = new javax.swing.JPanel();
+      jLabel18 = new javax.swing.JLabel();
+      txtTenDocGia = new javax.swing.JTextField();
 
       jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-      tblDocGia.setAutoCreateRowSorter(true);
-      tblDocGia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      tblDocGia.setModel(new javax.swing.table.DefaultTableModel(
+      tblMuonTra.setAutoCreateRowSorter(true);
+      tblMuonTra.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+      tblMuonTra.setModel(new javax.swing.table.DefaultTableModel(
          new Object [][] {
 
          },
@@ -148,15 +153,15 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
 
          }
       ));
-      tblDocGia.setAlignmentX(1.0F);
-      tblDocGia.setAlignmentY(1.0F);
-      tblDocGia.setShowGrid(true);
-      tblDocGia.addMouseListener(new java.awt.event.MouseAdapter() {
+      tblMuonTra.setAlignmentX(1.0F);
+      tblMuonTra.setAlignmentY(1.0F);
+      tblMuonTra.setShowGrid(true);
+      tblMuonTra.addMouseListener(new java.awt.event.MouseAdapter() {
          public void mouseClicked(java.awt.event.MouseEvent evt) {
-            tblDocGiaMouseClicked(evt);
+            tblMuonTraMouseClicked(evt);
          }
       });
-      jScrollPane1.setViewportView(tblDocGia);
+      jScrollPane1.setViewportView(tblMuonTra);
 
       jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -194,14 +199,14 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
          }
       });
 
-      btnSua.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sua.png"))); // NOI18N
-      btnSua.setText("SUA");
-      btnSua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-      btnSua.setIconTextGap(20);
-      btnSua.addActionListener(new java.awt.event.ActionListener() {
+      btnTraSach.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+      btnTraSach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sua.png"))); // NOI18N
+      btnTraSach.setText("TRA SACH");
+      btnTraSach.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+      btnTraSach.setIconTextGap(20);
+      btnTraSach.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnSuaActionPerformed(evt);
+            btnTraSachActionPerformed(evt);
          }
       });
 
@@ -223,7 +228,7 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
          jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
          .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-         .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+         .addComponent(btnTraSach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
          .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
          .addComponent(btnLuu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
          .addComponent(jSeparator4)
@@ -231,15 +236,15 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
       jPanel4Layout.setVerticalGroup(
          jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel4Layout.createSequentialGroup()
-            .addGap(58, 58, 58)
+            .addContainerGap()
             .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(27, 27, 27)
-            .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGap(40, 40, 40)
             .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(43, 43, 43)
+            .addGap(55, 55, 55)
+            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(29, 29, 29)
+            .addComponent(btnTraSach, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(32, 32, 32)
             .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(111, 111, 111)
             .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,12 +253,12 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
 
       jLabel6.setBackground(new java.awt.Color(184, 152, 96));
       jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel6.setText("MA DOC GIA");
+      jLabel6.setText("MA SACH");
 
-      txtMaDocGia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      txtMaDocGia.addActionListener(new java.awt.event.ActionListener() {
+      txtMaSach.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+      txtMaSach.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            txtMaDocGiaActionPerformed(evt);
+            txtMaSachActionPerformed(evt);
          }
       });
 
@@ -264,23 +269,23 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
          .addGroup(jPanel2Layout.createSequentialGroup()
             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(txtMaDocGia))
+            .addComponent(txtMaSach, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))
       );
       jPanel2Layout.setVerticalGroup(
          jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
             .addComponent(jLabel6)
-            .addComponent(txtMaDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(txtMaSach, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
 
       jLabel8.setBackground(new java.awt.Color(184, 152, 96));
       jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel8.setText("HO TEN");
+      jLabel8.setText("MA DOC GIA");
 
-      txtHoTen.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      txtHoTen.addActionListener(new java.awt.event.ActionListener() {
+      txtMaDocGia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+      txtMaDocGia.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            txtHoTenActionPerformed(evt);
+            txtMaDocGiaActionPerformed(evt);
          }
       });
 
@@ -291,97 +296,20 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
          .addGroup(jPanel7Layout.createSequentialGroup()
             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(txtHoTen))
+            .addComponent(txtMaDocGia))
       );
       jPanel7Layout.setVerticalGroup(
          jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-            .addComponent(jLabel8)
-            .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-      );
-
-      jLabel9.setBackground(new java.awt.Color(184, 152, 96));
-      jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel9.setText("GIOI TINH");
-
-      rdbNam.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      rdbNam.setText("NAM");
-      rdbNam.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            rdbNamActionPerformed(evt);
-         }
-      });
-
-      rdbNu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      rdbNu.setSelected(true);
-      rdbNu.setText("NU");
-      rdbNu.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            rdbNuActionPerformed(evt);
-         }
-      });
-
-      javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-      jPanel8.setLayout(jPanel8Layout);
-      jPanel8Layout.setHorizontalGroup(
-         jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel8Layout.createSequentialGroup()
-            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(rdbNam)
-            .addGap(75, 75, 75)
-            .addComponent(rdbNu)
-            .addContainerGap(154, Short.MAX_VALUE))
-      );
-      jPanel8Layout.setVerticalGroup(
-         jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel8Layout.createSequentialGroup()
-            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                  .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(rdbNam, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addComponent(rdbNu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(0, 0, Short.MAX_VALUE))
-      );
-
-      jLabel10.setBackground(new java.awt.Color(184, 152, 96));
-      jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel10.setText("NGAY SINH");
-
-      txtNgaySinh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      txtNgaySinh.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            txtNgaySinhActionPerformed(evt);
-         }
-      });
-
-      javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-      jPanel9.setLayout(jPanel9Layout);
-      jPanel9Layout.setHorizontalGroup(
-         jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel9Layout.createSequentialGroup()
-            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(txtNgaySinh))
-      );
-      jPanel9Layout.setVerticalGroup(
-         jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-            .addComponent(jLabel10)
-            .addComponent(txtNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(txtMaDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
 
       jLabel12.setBackground(new java.awt.Color(184, 152, 96));
       jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel12.setText("jLabel5");
+      jLabel12.setText("SO NGAY MUON");
 
-      jTextField8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      jTextField8.setText("jTextField1");
-      jTextField8.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextField8ActionPerformed(evt);
-         }
-      });
+      spnSoNgayMuon.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
       javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
       jPanel11.setLayout(jPanel11Layout);
@@ -389,14 +317,15 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
          jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel11Layout.createSequentialGroup()
             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))
+            .addGap(57, 57, 57)
+            .addComponent(spnSoNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       );
       jPanel11Layout.setVerticalGroup(
          jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-            .addComponent(jLabel12)
-            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(spnSoNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
 
       javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -405,11 +334,7 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
          jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
          .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-         .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
          .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-         .addGroup(jPanel3Layout.createSequentialGroup()
-            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(0, 0, Short.MAX_VALUE))
       );
       jPanel3Layout.setVerticalGroup(
          jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -418,23 +343,19 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(36, 36, 36)
-            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(41, 41, 41)
-            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(34, 34, 34)
+            .addGap(40, 40, 40)
             .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(105, Short.MAX_VALUE))
+            .addContainerGap(262, Short.MAX_VALUE))
       );
 
       jLabel13.setBackground(new java.awt.Color(184, 152, 96));
       jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel13.setText("SDT");
+      jLabel13.setText("NGAY MUON");
 
-      txtSdt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      txtSdt.addActionListener(new java.awt.event.ActionListener() {
+      txtNgayMuon.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
+      txtNgayMuon.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            txtSdtActionPerformed(evt);
+            txtNgayMuonActionPerformed(evt);
          }
       });
 
@@ -445,23 +366,23 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
          .addGroup(jPanel13Layout.createSequentialGroup()
             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(txtSdt))
+            .addComponent(txtNgayMuon))
       );
       jPanel13Layout.setVerticalGroup(
          jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
             .addComponent(jLabel13)
-            .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(txtNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
 
       jLabel14.setBackground(new java.awt.Color(184, 152, 96));
       jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel14.setText("EMAIL");
+      jLabel14.setText("TINH TRANG");
 
-      txtEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      txtEmail.addActionListener(new java.awt.event.ActionListener() {
+      txtTinhTrang.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
+      txtTinhTrang.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            txtEmailActionPerformed(evt);
+            txtTinhTrangActionPerformed(evt);
          }
       });
 
@@ -472,24 +393,23 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
          .addGroup(jPanel14Layout.createSequentialGroup()
             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(txtEmail))
+            .addComponent(txtTinhTrang))
       );
       jPanel14Layout.setVerticalGroup(
          jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
             .addComponent(jLabel14)
-            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(txtTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
 
-      jLabel15.setBackground(new java.awt.Color(184, 152, 96));
-      jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel15.setText("jLabel5");
+      lsldslfasdf.setBackground(new java.awt.Color(184, 152, 96));
+      lsldslfasdf.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+      lsldslfasdf.setText("NGAY THUC TRA");
 
-      jTextField11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      jTextField11.setText("jTextField1");
-      jTextField11.addActionListener(new java.awt.event.ActionListener() {
+      txtNgayThucTra.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
+      txtNgayThucTra.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextField11ActionPerformed(evt);
+            txtNgayThucTraActionPerformed(evt);
          }
       });
 
@@ -498,53 +418,25 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
       jPanel15Layout.setHorizontalGroup(
          jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel15Layout.createSequentialGroup()
-            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(lsldslfasdf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jTextField11, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))
+            .addComponent(txtNgayThucTra, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
       jPanel15Layout.setVerticalGroup(
          jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-            .addComponent(jLabel15)
-            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-      );
-
-      jLabel16.setBackground(new java.awt.Color(184, 152, 96));
-      jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel16.setText("DIA CHI");
-
-      txtDiaChi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      txtDiaChi.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            txtDiaChiActionPerformed(evt);
-         }
-      });
-
-      javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-      jPanel16.setLayout(jPanel16Layout);
-      jPanel16Layout.setHorizontalGroup(
-         jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel16Layout.createSequentialGroup()
-            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(txtDiaChi))
-      );
-      jPanel16Layout.setVerticalGroup(
-         jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-            .addComponent(jLabel16)
-            .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(lsldslfasdf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(txtNgayThucTra, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
 
       jLabel17.setBackground(new java.awt.Color(184, 152, 96));
       jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel17.setText("jLabel5");
+      jLabel17.setText("TEN SACH");
 
-      jTextField13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      jTextField13.setText("jTextField1");
-      jTextField13.addActionListener(new java.awt.event.ActionListener() {
+      txtTenSach.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
+      txtTenSach.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextField13ActionPerformed(evt);
+            txtTenSachActionPerformed(evt);
          }
       });
 
@@ -555,13 +447,40 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
          .addGroup(jPanel17Layout.createSequentialGroup()
             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jTextField13))
+            .addComponent(txtTenSach))
       );
       jPanel17Layout.setVerticalGroup(
          jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-            .addComponent(jLabel17)
-            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(txtTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+      );
+
+      jLabel18.setBackground(new java.awt.Color(184, 152, 96));
+      jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+      jLabel18.setText("TEN DOC GIA");
+
+      txtTenDocGia.setFont(new java.awt.Font("Tahoma", 1, 17)); // NOI18N
+      txtTenDocGia.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            txtTenDocGiaActionPerformed(evt);
+         }
+      });
+
+      javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+      jPanel18.setLayout(jPanel18Layout);
+      jPanel18Layout.setHorizontalGroup(
+         jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(jPanel18Layout.createSequentialGroup()
+            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(txtTenDocGia))
+      );
+      jPanel18Layout.setVerticalGroup(
+         jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(txtTenDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
 
       javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -571,8 +490,8 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
          .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
          .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
          .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-         .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
          .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+         .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
       );
       jPanel12Layout.setVerticalGroup(
          jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -581,13 +500,13 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
             .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
             .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(36, 36, 36)
-            .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(41, 41, 41)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(34, 34, 34)
+            .addGap(18, 18, 18)
             .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(105, Short.MAX_VALUE))
+            .addGap(18, 18, 18)
+            .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(202, Short.MAX_VALUE))
       );
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -596,17 +515,19 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
             .addContainerGap()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                .addGroup(layout.createSequentialGroup()
-                  .addGap(168, 168, 168)
-                  .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                  .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(layout.createSequentialGroup()
-                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addGap(54, 54, 54)
-                     .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGap(75, 75, 75)
+                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addGroup(layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE))
+                     .addComponent(jScrollPane1))
+                  .addGap(75, 75, 75))
+               .addGroup(layout.createSequentialGroup()
+                  .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(72, 72, 72)
+                  .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(57, 57, 57)))
             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -626,7 +547,7 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                      .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                      .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                   .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addGap(36, 36, 36)
                   .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -639,172 +560,150 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                .addGap(21, 21, 21)
                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addContainerGap(465, Short.MAX_VALUE)))
+               .addContainerGap(488, Short.MAX_VALUE)))
       );
    }// </editor-fold>//GEN-END:initComponents
+
+   private void txtMaSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaSachActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_txtMaSachActionPerformed
 
    private void txtMaDocGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaDocGiaActionPerformed
       // TODO add your handling code here:
    }//GEN-LAST:event_txtMaDocGiaActionPerformed
 
-   private void txtHoTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoTenActionPerformed
+   private void txtNgayMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNgayMuonActionPerformed
       // TODO add your handling code here:
-   }//GEN-LAST:event_txtHoTenActionPerformed
+   }//GEN-LAST:event_txtNgayMuonActionPerformed
 
-   private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+   private void txtTinhTrangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTinhTrangActionPerformed
       // TODO add your handling code here:
-   }//GEN-LAST:event_jTextField8ActionPerformed
-
-   private void txtSdtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSdtActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_txtSdtActionPerformed
-
-   private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_txtEmailActionPerformed
-
-   private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_jTextField11ActionPerformed
-
-   private void txtDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaChiActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_txtDiaChiActionPerformed
-
-   private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_jTextField13ActionPerformed
-
-   private void txtNgaySinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNgaySinhActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_txtNgaySinhActionPerformed
-
-   private void rdbNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbNamActionPerformed
-		if(rdbNam.isSelected() == true){
-			rdbNu.setSelected(false);
-		}else{
-			rdbNu.setSelected(true);
-		}
-   }//GEN-LAST:event_rdbNamActionPerformed
-
-   private void rdbNuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbNuActionPerformed
-		if(rdbNu.isSelected() == true){
-			rdbNam.setSelected(false);
-		}else{
-			rdbNam.setSelected(true);
-		}
-   }//GEN-LAST:event_rdbNuActionPerformed
+   }//GEN-LAST:event_txtTinhTrangActionPerformed
 
    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-		toggleLuu = false;
+		btnLuu.setEnabled(true);
 		JTextField[] listTxt = {
-   		txtDiaChi,
-   		txtEmail,
-   		txtHoTen,
+   		txtMaSach,
    		txtMaDocGia,
-   		txtNgaySinh,
-   		txtSdt,
 		};
 		Bar.resetTxt(listTxt);
 		this.setEnable();
    }//GEN-LAST:event_btnThemActionPerformed
 
-   private void tblDocGiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDocGiaMouseClicked
+   private void tblMuonTraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMuonTraMouseClicked
 		this.setDisable();
-		int row = tblDocGia.getSelectedRow();
+		int row = tblMuonTra.getSelectedRow();
 		if(row > 0){
-			DocGia docGia = dao.findById(tblDocGia.getValueAt(row, 0).toString());
-			if(docGia == null){
+			String maSach = tblMuonTra.getValueAt(row, 0).toString();
+			String maDocGia = tblMuonTra.getValueAt(row, 1).toString();
+			MuonTra muonTra = dao.findById(maSach, maDocGia, maThuThu);
+			if(muonTra == null){
 				System.out.println("hshahah");
+				return;
 			}
-			if(docGia != null){
-				if(docGia.getGoiTinh() == 1){
-					rdbNam.setSelected(true);
-					rdbNu.setSelected(false);
+			/*ma sach, madocgia, songaymuon, ngaymuon, tinhtrang, ngaythuctra, tensach, tenbandoc*/
+			txtMaDocGia.setText(maDocGia);
+			txtMaSach.setText(maSach);
+			spnSoNgayMuon.setValue(muonTra.getSoNgayMuon());
+			txtNgayMuon.setText(muonTra.getNgayMuon().toString());
+			if(muonTra.getNgayThucTra().toString().equals("2000-02-02")){
+				txtNgayThucTra.setText("null");
+				Date curDate = new Date(System.currentTimeMillis());
+				Date ngayMuon = muonTra.getNgayMuon();
+				int hash = (-1) * (ngayMuon.hashCode() - curDate.hashCode()) / (24 * 60 * 60 * 1000);
+				if((hash - muonTra.getSoNgayMuon()) <= 0){
+					txtTinhTrang.setText("CHUA TRA");
 				}else{
-					rdbNam.setSelected(false);
-					rdbNu.setSelected(true);
+					txtTinhTrang.setText("QUA HAN");
 				}
-   			txtDiaChi.setText(docGia.getDiaChi());
-   			txtEmail.setText(docGia.getEmail());
-   			txtHoTen.setText(docGia.getHoTen());
-   			txtMaDocGia.setText(docGia.getMaDocGia());
-   			txtNgaySinh.setText(docGia.getNgaySinh().toString());
-   			txtSdt.setText(docGia.getSdt());
+			}else{
+				txtNgayThucTra.setText(muonTra.getNgayThucTra().toString());
+				txtTinhTrang.setText("DA TRA");
+			}
+			Sach sach = sachDao.findById(maSach);
+			if(sach != null){
+				txtTenSach.setText(sach.getTenSach());
+			}else{
+				txtTenSach.setText("hahahah");
+			}
+			DocGia docGia = docGiaDao.findById(maDocGia);
+			if(docGia!= null){
+				txtTenDocGia.setText(docGia.getHoTen());
+			}else{
+				txtTenDocGia.setText("hahaha");
 			}
 		}
-   }//GEN-LAST:event_tblDocGiaMouseClicked
+   }//GEN-LAST:event_tblMuonTraMouseClicked
 
    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
 		JTextField[] listTxt = {
-   		txtDiaChi,
-   		txtEmail,
-   		txtHoTen,
    		txtMaDocGia,
-   		txtNgaySinh,
-   		txtSdt,
+   		txtMaSach,
 		};
+		if((int)spnSoNgayMuon.getValue() <= 0){
+				MessDialog.showErrorDialog(this, "SO NGAY MUON PHAI LON HON 0!!", "ERROR");
+				return;
+		}
 		for(JTextField i: listTxt){
 			if(i.getText().equals("")){
 				MessDialog.showErrorDialog(this, "CAN NHAP DAY DU CAC TRUONG!!", "ERROR");
 				return;
 			}
 		}
-		String maDocGia = txtMaDocGia.getText();
-		String hoTen = txtHoTen.getText();
-		Date ngaySinh = Date.valueOf(txtNgaySinh.getText());
-		int gioiTinh = 0;
-		if(rdbNam.isSelected() == true){
-			gioiTinh = 1;
-		}
-		String sdt = txtSdt.getText();
-		String email = txtEmail.getText();
-		String diaChi = txtDiaChi.getText();
-		DocGia docGia = new DocGia(maDocGia, hoTen, (java.sql.Date) ngaySinh, gioiTinh, sdt, email, diaChi);
-		if(toggleLuu == false){
-			boolean isInsert = dao.insert(docGia);
+			String maSach = txtMaSach.getText();
+			String maDocGia = txtMaDocGia.getText();
+			String maThuThu = this.maThuThu;
+			Date ngayMuon = new Date(System.currentTimeMillis());
+			int soNgayMuon = (int)spnSoNgayMuon.getValue();
+			MuonTra muonTra = new MuonTra(maSach, maDocGia, maThuThu, ngayMuon, soNgayMuon);
+			boolean isInsert = dao.insert(muonTra);
 			if(isInsert == true){
 				MessDialog.showMessDialog(this , "THEM THANH CONG!!", "INFO");
 				list = dao.selectAll();
-				initTbl(model, tblDocGia, headerTbl, list);
+				initTbl(model, tblMuonTra, headerTbl, list);
+				this.setDisable();
 			}else{
-				MessDialog.showErrorDialog(this, "THAT BAI!!", "ERROR");
+				MessDialog.showErrorDialog(this, "THEM THAT BAI!!", "ERROR");
 			}
-		}else{
-			int choose = MessDialog.showComfirmDialog(this, "SUA?", "COMFIRM");
+			
+   }//GEN-LAST:event_btnLuuActionPerformed
+
+   private void btnTraSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraSachActionPerformed
+		if(txtNgayThucTra.getText().equals("null")){
+			String maSach = txtMaSach.getText();
+			String maDocGia = txtMaDocGia.getText();
+			String maThuThu = this.maThuThu;
+			Date ngayThucTra = new Date(System.currentTimeMillis());
+			int choose = MessDialog.showComfirmDialog(this, "TRA SACH?", "COMFIRM");
 			if(choose == 0){
-				boolean isUpdate= dao.update(docGia);
+				boolean isUpdate= dao.update(maSach, maDocGia, maThuThu, ngayThucTra);
 				if(isUpdate == true){
 					MessDialog.showMessDialog(this , "SUA THANH CONG!!", "INFO");
 					list = dao.selectAll();
-					initTbl(model, tblDocGia, headerTbl, list);
+					initTbl(model, tblMuonTra, headerTbl, list);
+					this.setDisable();
 				}else{
-					MessDialog.showErrorDialog(this, "THAT BAI!!", "ERROR");
+					MessDialog.showErrorDialog(this, "SUA THAT BAI!!", "ERROR");
 				}
 			}
+		}else{
+			MessDialog.showMessDialog(this, "SACH DA DUOC TRA!!!", "INFO");
 		}
-		
-		
-   }//GEN-LAST:event_btnLuuActionPerformed
-
-   private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-		this.setEnable();
-		toggleLuu = true;
-		txtMaDocGia.setEnabled(false);
-   }//GEN-LAST:event_btnSuaActionPerformed
+   }//GEN-LAST:event_btnTraSachActionPerformed
 
    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
 		String maDocGia = txtMaDocGia.getText();
+		String maSach = txtMaSach.getText();
 		if(maDocGia.equals("")){
-			MessDialog.showErrorDialog(this, "CAN CHON MA BAN DOC DE XOA", "INFO");
+			MessDialog.showErrorDialog(this, "CAN NHAP MA DOC GIA VA MA SACH DE XOA!!", "INFO");
 			return;
 		}
 		int choose = MessDialog.showComfirmDialog(this, "XOA ?", "COMFIRM");
 		if(choose == 0){
-			boolean isDelete = dao.delete(maDocGia);
+			boolean isDelete = dao.delete(maSach, maDocGia, maThuThu);
 			if(isDelete == true){
 				list = dao.selectAll();
-				initTbl(model, tblDocGia, headerTbl, list);
+				initTbl(model, tblMuonTra, headerTbl, list);
 				MessDialog.showMessDialog(this, "XOA THANH CONG!!!", "INFO");
 			}else{
 				MessDialog.showErrorDialog(this, "THAT BAI!!!", "ERROR");
@@ -812,78 +711,101 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
 		}
    }//GEN-LAST:event_btnXoaActionPerformed
 
+   private void txtNgayThucTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNgayThucTraActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_txtNgayThucTraActionPerformed
+
+   private void txtTenSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenSachActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_txtTenSachActionPerformed
+
+   private void txtTenDocGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenDocGiaActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_txtTenDocGiaActionPerformed
+
    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
 		String maDocGia = txtMaDocGia.getText();
-		if(maDocGia.equals("")){
-			MessDialog.showErrorDialog(this, "CAN NHAP MA DOC GIA!!", "ERROR");
+		String maSach = txtMaSach.getText();
+		if(maDocGia.equals("") || maSach.equals("")){
+			MessDialog.showErrorDialog(this, "CAN NHAP MA DOC GIA & MA SACH!!", "ERROR");
 			return;
 		}
-		DocGia docGia = dao.findById(maDocGia);
-		if(docGia == null){
-			MessDialog.showMessDialog(this, "KHONG TIM THAY DOC GIA!!", "ERROR");
+		MuonTra muonTra = dao.findById(maSach, maDocGia, maThuThu);
+		if(muonTra == null){
+			MessDialog.showMessDialog(this, "KHONG TIM THAY!!", "ERROR");
 		}else{
-				if(docGia.getGoiTinh() == 1){
-					rdbNam.setSelected(true);
-					rdbNu.setSelected(false);
+			txtMaDocGia.setText(maDocGia);
+			txtMaSach.setText(maSach);
+			spnSoNgayMuon.setValue(muonTra.getSoNgayMuon());
+			txtNgayMuon.setText(muonTra.getNgayMuon().toString());
+			if(muonTra.getNgayThucTra().toString().equals("2000-02-02")){
+				txtNgayThucTra.setText("null");
+				Date curDate = new Date(System.currentTimeMillis());
+				Date ngayMuon = muonTra.getNgayMuon();
+				int hash = (-1) * (ngayMuon.hashCode() - curDate.hashCode()) / (24 * 60 * 60 * 1000);
+				if((hash - muonTra.getSoNgayMuon()) <= 0){
+					txtTinhTrang.setText("CHUA TRA");
 				}else{
-					rdbNam.setSelected(false);
-					rdbNu.setSelected(true);
+					txtTinhTrang.setText("QUA HAN");
 				}
-   			txtDiaChi.setText(docGia.getDiaChi());
-   			txtEmail.setText(docGia.getEmail());
-   			txtHoTen.setText(docGia.getHoTen());
-   			txtMaDocGia.setText(docGia.getMaDocGia());
-   			txtNgaySinh.setText(docGia.getNgaySinh().toString());
-   			txtSdt.setText(docGia.getSdt());
+			}else{
+				txtNgayThucTra.setText(muonTra.getNgayThucTra().toString());
+				txtTinhTrang.setText("DA TRA");
+			}
+			Sach sach = sachDao.findById(maSach);
+			if(sach != null){
+				txtTenSach.setText(sach.getTenSach());
+			}else{
+				txtTenSach.setText("hahahah");
+			}
+			DocGia docGia = docGiaDao.findById(maDocGia);
+			if(docGia!= null){
+				txtTenDocGia.setText(docGia.getHoTen());
+			}else{
+				txtTenDocGia.setText("hahaha");
+			}
 		}
    }//GEN-LAST:event_btnTimKiemActionPerformed
 
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btnLuu;
-   private javax.swing.JButton btnSua;
    private javax.swing.JButton btnThem;
    private javax.swing.JButton btnTimKiem;
+   private javax.swing.JButton btnTraSach;
    private javax.swing.JButton btnXoa;
-   private javax.swing.JLabel jLabel10;
    private javax.swing.JLabel jLabel12;
    private javax.swing.JLabel jLabel13;
    private javax.swing.JLabel jLabel14;
-   private javax.swing.JLabel jLabel15;
-   private javax.swing.JLabel jLabel16;
    private javax.swing.JLabel jLabel17;
+   private javax.swing.JLabel jLabel18;
    private javax.swing.JLabel jLabel6;
    private javax.swing.JLabel jLabel8;
-   private javax.swing.JLabel jLabel9;
    private javax.swing.JPanel jPanel11;
    private javax.swing.JPanel jPanel12;
    private javax.swing.JPanel jPanel13;
    private javax.swing.JPanel jPanel14;
    private javax.swing.JPanel jPanel15;
-   private javax.swing.JPanel jPanel16;
    private javax.swing.JPanel jPanel17;
+   private javax.swing.JPanel jPanel18;
    private javax.swing.JPanel jPanel2;
    private javax.swing.JPanel jPanel3;
    private javax.swing.JPanel jPanel4;
    private javax.swing.JPanel jPanel7;
-   private javax.swing.JPanel jPanel8;
-   private javax.swing.JPanel jPanel9;
    private javax.swing.JScrollPane jScrollPane1;
    private javax.swing.JSeparator jSeparator1;
    private javax.swing.JSeparator jSeparator2;
    private javax.swing.JSeparator jSeparator3;
    private javax.swing.JSeparator jSeparator4;
-   private javax.swing.JTextField jTextField11;
-   private javax.swing.JTextField jTextField13;
-   private javax.swing.JTextField jTextField8;
-   private javax.swing.JRadioButton rdbNam;
-   private javax.swing.JRadioButton rdbNu;
-   private javax.swing.JTable tblDocGia;
-   private javax.swing.JTextField txtDiaChi;
-   private javax.swing.JTextField txtEmail;
-   private javax.swing.JTextField txtHoTen;
+   private javax.swing.JLabel lsldslfasdf;
+   private javax.swing.JSpinner spnSoNgayMuon;
+   private javax.swing.JTable tblMuonTra;
    private javax.swing.JTextField txtMaDocGia;
-   private javax.swing.JTextField txtNgaySinh;
-   private javax.swing.JTextField txtSdt;
+   private javax.swing.JTextField txtMaSach;
+   private javax.swing.JTextField txtNgayMuon;
+   private javax.swing.JTextField txtNgayThucTra;
+   private javax.swing.JTextField txtTenDocGia;
+   private javax.swing.JTextField txtTenSach;
+   private javax.swing.JTextField txtTinhTrang;
    // End of variables declaration//GEN-END:variables
 }

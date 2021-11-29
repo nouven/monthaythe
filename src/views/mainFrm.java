@@ -19,10 +19,14 @@ public class mainFrm extends javax.swing.JFrame {
 	 */
 	private  FisrtPn firstpn;
 	private  SecondPn secondpn;
-	public mainFrm() {
+	private String maThuThu;
+	public mainFrm(String maThuThu, String hoTen) {
 		initComponents();
 		this.setLocationRelativeTo(null);
 		this.setExtendedState(this.MAXIMIZED_BOTH);
+		this.maThuThu = maThuThu;
+		lbMaThuThu.setText(maThuThu.toUpperCase());
+		lbHoTen.setText(hoTen.toUpperCase());
 	}
 
 	/**
@@ -341,7 +345,10 @@ public class mainFrm extends javax.swing.JFrame {
    }//GEN-LAST:event_btnQuanLiSachActionPerformed
 
    private void btnQuanLiMuonTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiMuonTraActionPerformed
-      // TODO add your handling code here:
+		tpnMain.removeAll();
+		QuanLiMuonTraPn quanLiMuonTraPn = new QuanLiMuonTraPn(maThuThu);
+		tpnMain.addTab("QUAN LI SACH", quanLiMuonTraPn);
+		tpnMain.setSelectedComponent(quanLiMuonTraPn);
    }//GEN-LAST:event_btnQuanLiMuonTraActionPerformed
 
    private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuActionPerformed
@@ -390,7 +397,7 @@ public class mainFrm extends javax.swing.JFrame {
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new mainFrm().setVisible(true);
+				new mainFrm("haha", "hahah").setVisible(true);
 			}
 		});
 		long miliS = System.currentTimeMillis();

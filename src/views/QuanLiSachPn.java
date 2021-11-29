@@ -43,6 +43,7 @@ public class QuanLiSachPn extends javax.swing.JPanel {
 	private DefaultTableModel model = new DefaultTableModel();
 	private SachDao dao = new SachDao();
 	private DanhMucDao danhMucDao = new DanhMucDao();
+	private boolean toggleLuu = false;
 	public QuanLiSachPn() {
 		list = new ArrayList<>();
 		list = dao.selectAll();
@@ -50,7 +51,7 @@ public class QuanLiSachPn extends javax.swing.JPanel {
 		initComponents();
 		initTbl(model, tblSach, headerTbl, list);
 		initDanhMuc(danhMucList);
-		btnLuu.setEnabled(false);
+		this.setDisable();
 	}
 	private void initTbl(DefaultTableModel model , JTable tbl, String[] headerTbl, ArrayList<Sach> list){
 		model.setRowCount(0);
@@ -67,6 +68,24 @@ public class QuanLiSachPn extends javax.swing.JPanel {
 			});
 		});
 		tbl.setModel(model);
+	}
+	public void setEnable(){
+		txtMaSach.setEnabled(true);
+		txtNxb.setEnabled(true);
+		cbMaDanhMuc.setEnabled(true);
+		txtTenSach.setEnabled(true);
+		txtTacGia.setEnabled(true);
+		spnSoLuong.setEnabled(true);
+		txtNdTomTat.setEnabled(true);
+	}
+	public void setDisable(){
+		txtMaSach.setEnabled(true);
+		txtNxb.setEnabled(false);
+		cbMaDanhMuc.setEnabled(false);
+		txtTenSach.setEnabled(false);
+		txtTacGia.setEnabled(false);
+		spnSoLuong.setEnabled(false);
+		txtNdTomTat.setEnabled(false);
 	}
 	private void initDanhMuc(ArrayList<DanhMuc> danhMucList){
 		danhMucList.forEach((elmt) -> {
@@ -90,7 +109,7 @@ public class QuanLiSachPn extends javax.swing.JPanel {
       jPanel4 = new javax.swing.JPanel();
       btnThem = new javax.swing.JButton();
       btnXoa = new javax.swing.JButton();
-      jButton5 = new javax.swing.JButton();
+      btnTimKiem = new javax.swing.JButton();
       btnSua = new javax.swing.JButton();
       btnLuu = new javax.swing.JButton();
       jSeparator4 = new javax.swing.JSeparator();
@@ -169,11 +188,16 @@ public class QuanLiSachPn extends javax.swing.JPanel {
          }
       });
 
-      jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/searching.png"))); // NOI18N
-      jButton5.setText("TIM KIEM");
-      jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-      jButton5.setIconTextGap(20);
+      btnTimKiem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+      btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/searching.png"))); // NOI18N
+      btnTimKiem.setText("TIM KIEM");
+      btnTimKiem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+      btnTimKiem.setIconTextGap(20);
+      btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnTimKiemActionPerformed(evt);
+         }
+      });
 
       btnSua.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
       btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sua.png"))); // NOI18N
@@ -204,26 +228,26 @@ public class QuanLiSachPn extends javax.swing.JPanel {
          jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
          .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-         .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-         .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+         .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
          .addComponent(btnLuu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
          .addComponent(jSeparator4)
+         .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
       );
       jPanel4Layout.setVerticalGroup(
          jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel4Layout.createSequentialGroup()
-            .addGap(58, 58, 58)
+            .addContainerGap()
             .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
-            .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(30, 30, 30)
+            .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(74, 74, 74)
             .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
-            .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(33, 33, 33)
+            .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(36, 36, 36)
             .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(111, 111, 111)
-            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(167, Short.MAX_VALUE))
       );
 
@@ -562,6 +586,7 @@ public class QuanLiSachPn extends javax.swing.JPanel {
 
    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
 		btnLuu.setEnabled(true);
+		toggleLuu = false;
 		JTextField[] listTxt = {
    		txtMaSach,
    		txtNxb,
@@ -570,10 +595,11 @@ public class QuanLiSachPn extends javax.swing.JPanel {
 		};
 		Bar.resetTxt(listTxt);
 		txtNdTomTat.setText("");
-		initTbl(model, tblSach, headerTbl, list);
+		this.setEnable();
    }//GEN-LAST:event_btnThemActionPerformed
 
    private void tblSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSachMouseClicked
+		this.setDisable();
 		int row = tblSach.getSelectedRow();
 		if(row > 0){
 			Sach sach = dao.findById(tblSach.getValueAt(row, 0).toString());
@@ -613,55 +639,43 @@ public class QuanLiSachPn extends javax.swing.JPanel {
 		int soLuong = (int) spnSoLuong.getValue();
 		String ndTomTat = txtNdTomTat.getText();
 		Sach sach = new Sach(maSach, nxb, maDanhMuc, tenSach, tacGia, soLuong, ndTomTat);
-		boolean isInsert = dao.insert(sach);
-		if(isInsert == true){
-			MessDialog.showMessDialog(this , "THEM THANH CONG!!", "INFO");
-			list = dao.selectAll();
-			initTbl(model, tblSach, headerTbl, list);
-		}else{
-			MessDialog.showErrorDialog(this, "THAT BAI!!", "ERROR");
-		}
-   }//GEN-LAST:event_btnLuuActionPerformed
-
-   private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-		JTextField[] listTxt = {
-   		txtTacGia,
-   		txtNxb,
-   		txtMaSach,
-   		txtTenSach,
-		};
-		for(JTextField i: listTxt){
-			if(i.getText().equals("")){
-				MessDialog.showErrorDialog(this, "CAN NHAP DAY DU CAC TRUONG!!", "ERROR");
-				return;
-			}
-		}
-		String maSach = txtMaSach.getText();
-		String nxb = txtNxb.getText();
-		String maDanhMuc = cbMaDanhMuc.getItemAt(cbMaDanhMuc.getSelectedIndex());
-		String tenSach = txtTenSach.getText();
-		String tacGia = txtTacGia.getText();
-		int soLuong = (int) spnSoLuong.getValue();
-		String ndTomTat = txtNdTomTat.getText();
-		Sach sach = new Sach(maSach, nxb, maDanhMuc, tenSach, tacGia, soLuong, ndTomTat);
-		int choose = MessDialog.showComfirmDialog(this, "SUA?", "COMFIRM");
-		if(choose == 0){
-			boolean isUpdate= dao.update(sach);
-			if(isUpdate == true){
-				MessDialog.showMessDialog(this , "SUA THANH CONG!!", "INFO");
+		if(toggleLuu == false){
+			boolean isInsert = dao.insert(sach);
+			if(isInsert == true){
+				MessDialog.showMessDialog(this , "THEM THANH CONG!!", "INFO");
 				list = dao.selectAll();
 				initTbl(model, tblSach, headerTbl, list);
+				this.setDisable();
 			}else{
-				MessDialog.showErrorDialog(this, "THAT BAI!!", "ERROR");
+				MessDialog.showErrorDialog(this, "THEM THAT BAI!!", "ERROR");
+			}
+		}else{
+			int choose = MessDialog.showComfirmDialog(this, "SUA?", "COMFIRM");
+			if(choose == 0){
+				boolean isUpdate= dao.update(sach);
+				if(isUpdate == true){
+					MessDialog.showMessDialog(this , "SUA THANH CONG!!", "INFO");
+					list = dao.selectAll();
+					initTbl(model, tblSach, headerTbl, list);
+					this.setDisable();
+				}else{
+					MessDialog.showErrorDialog(this, "SUA THAT BAI!!", "ERROR");
+				}
 			}
 		}
 		
+   }//GEN-LAST:event_btnLuuActionPerformed
+
+   private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+		this.setEnable();
+		txtMaSach.setEnabled(false);
+		toggleLuu = true;
    }//GEN-LAST:event_btnSuaActionPerformed
 
    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
 		String maDocGia = txtMaSach.getText();
 		if(maDocGia.equals("")){
-			MessDialog.showErrorDialog(this, "CAN CHON MA BAN DOC DE XOA", "INFO");
+			MessDialog.showErrorDialog(this, "CAN CHON MA SACH DE XOA", "ERROR");
 			return;
 		}
 		int choose = MessDialog.showComfirmDialog(this, "XOA ?", "COMFIRM");
@@ -681,14 +695,33 @@ public class QuanLiSachPn extends javax.swing.JPanel {
       // TODO add your handling code here:
    }//GEN-LAST:event_cbMaDanhMucActionPerformed
 
+   private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+		String maSach = txtMaSach.getText();
+		if(maSach.equals("")){
+			MessDialog.showErrorDialog(this, "CAN NHAP MA DOC GIA!!", "ERROR");
+			return;
+		}
+		Sach sach = dao.findById(maSach);
+		if(sach == null){
+			MessDialog.showMessDialog(this, "KHONG TIM THAY SACH!!", "ERROR");
+		}else{
+   			txtMaSach.setText(sach.getMaSach());
+   			txtTacGia.setText(sach.getTacGia());
+   			txtNxb.setText(sach.getNxb());
+				txtTenSach.setText(sach.getTenSach());
+   			txtNdTomTat.setText(sach.getNdTomTat());
+				spnSoLuong.setValue(sach.getSoluong());
+		}
+   }//GEN-LAST:event_btnTimKiemActionPerformed
+
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btnLuu;
    private javax.swing.JButton btnSua;
    private javax.swing.JButton btnThem;
+   private javax.swing.JButton btnTimKiem;
    private javax.swing.JButton btnXoa;
    private javax.swing.JComboBox<String> cbMaDanhMuc;
-   private javax.swing.JButton jButton5;
    private javax.swing.JLabel jLabel10;
    private javax.swing.JLabel jLabel12;
    private javax.swing.JLabel jLabel13;
