@@ -150,6 +150,8 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
       ));
       tblDocGia.setAlignmentX(1.0F);
       tblDocGia.setAlignmentY(1.0F);
+      tblDocGia.setRowHeight(30);
+      tblDocGia.setRowMargin(3);
       tblDocGia.setShowGrid(true);
       tblDocGia.addMouseListener(new java.awt.event.MouseAdapter() {
          public void mouseClicked(java.awt.event.MouseEvent evt) {

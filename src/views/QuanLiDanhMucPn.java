@@ -102,6 +102,8 @@ public class QuanLiDanhMucPn extends javax.swing.JPanel {
       ));
       tblDanhMuc.setAlignmentX(1.0F);
       tblDanhMuc.setAlignmentY(1.0F);
+      tblDanhMuc.setRowHeight(30);
+      tblDanhMuc.setRowMargin(3);
       tblDanhMuc.setShowGrid(true);
       tblDanhMuc.addMouseListener(new java.awt.event.MouseAdapter() {
          public void mouseClicked(java.awt.event.MouseEvent evt) {

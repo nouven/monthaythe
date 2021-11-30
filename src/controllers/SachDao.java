@@ -106,6 +106,62 @@ public class SachDao {
 		}
 		return null;
 	}
+	public ArrayList<Sach> findByName(String name){
+		String sql = "select * from tbl_sach where tensach like ? or tensach like ? or tensach like ?";
+		ArrayList<Sach> list = new ArrayList<>();
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, name + "%");
+			pstm.setString(2, "%" + name + "%");
+			pstm.setString(3, "%" + name);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				String maSach = rs.getString("masach");
+				String nxb = rs.getString("nxb");
+				String maDanhMuc = rs.getString("madanhmuc");
+				String tenSach = rs.getString("tensach");
+				String tacGia = rs.getString("tacgia");
+				int soLuong = rs.getInt("soluong");
+				String ndTomTat = rs.getString("ndtomtat");
+				Sach sach = new Sach(maSach, nxb, maDanhMuc, tenSach, tacGia, soLuong, ndTomTat);
+				list.add(sach);
+			}
+			pstm.close();
+			conn.close();
+			return list;
+		} catch (SQLException ex) {
+			Logger.getLogger(SachDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
+	public ArrayList<Sach> findByCategory(String category){
+		String sql = "select * from tbl_sach where madanhmuc = ?";
+		ArrayList<Sach> list = new ArrayList<>();
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, category);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				String maSach = rs.getString("masach");
+				String nxb = rs.getString("nxb");
+				String maDanhMuc = rs.getString("madanhmuc");
+				String tenSach = rs.getString("tensach");
+				String tacGia = rs.getString("tacgia");
+				int soLuong = rs.getInt("soluong");
+				String ndTomTat = rs.getString("ndtomtat");
+				Sach sach = new Sach(maSach, nxb, maDanhMuc, tenSach, tacGia, soLuong, ndTomTat);
+				list.add(sach);
+			}
+			pstm.close();
+			conn.close();
+			return list;
+		} catch (SQLException ex) {
+			Logger.getLogger(SachDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
 	public Sach findById(String id){
 		String sql = "select * from tbl_Sach where masach = ?";
 		try {

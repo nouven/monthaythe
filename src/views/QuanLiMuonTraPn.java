@@ -155,6 +155,8 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
       ));
       tblMuonTra.setAlignmentX(1.0F);
       tblMuonTra.setAlignmentY(1.0F);
+      tblMuonTra.setRowHeight(30);
+      tblMuonTra.setRowMargin(3);
       tblMuonTra.setShowGrid(true);
       tblMuonTra.addMouseListener(new java.awt.event.MouseAdapter() {
          public void mouseClicked(java.awt.event.MouseEvent evt) {

@@ -155,6 +155,8 @@ public class QuanLiSachPn extends javax.swing.JPanel {
       ));
       tblSach.setAlignmentX(1.0F);
       tblSach.setAlignmentY(1.0F);
+      tblSach.setRowHeight(30);
+      tblSach.setRowMargin(3);
       tblSach.setShowGrid(true);
       tblSach.addMouseListener(new java.awt.event.MouseAdapter() {
          public void mouseClicked(java.awt.event.MouseEvent evt) {

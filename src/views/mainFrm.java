@@ -46,9 +46,9 @@ public class mainFrm extends javax.swing.JFrame {
       btnQuanLiDocGia = new javax.swing.JButton();
       btnQuanLiMuonTra = new javax.swing.JButton();
       jSeparator1 = new javax.swing.JSeparator();
-      btnTraCuu = new javax.swing.JButton();
+      btnhahah = new javax.swing.JButton();
       btnThongKe = new javax.swing.JButton();
-      btnTraCuu1 = new javax.swing.JButton();
+      btnTraCuu = new javax.swing.JButton();
       jSeparator5 = new javax.swing.JSeparator();
       jPanel2 = new javax.swing.JPanel();
       jLabel1 = new javax.swing.JLabel();
@@ -118,16 +118,16 @@ public class mainFrm extends javax.swing.JFrame {
          }
       });
 
-      btnTraCuu.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-      btnTraCuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/block-user.png"))); // NOI18N
-      btnTraCuu.setText("TRA CUU");
-      btnTraCuu.setFocusable(false);
-      btnTraCuu.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-      btnTraCuu.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-      btnTraCuu.setIconTextGap(20);
-      btnTraCuu.addActionListener(new java.awt.event.ActionListener() {
+      btnhahah.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+      btnhahah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/block-user.png"))); // NOI18N
+      btnhahah.setText("TRA CUU");
+      btnhahah.setFocusable(false);
+      btnhahah.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+      btnhahah.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+      btnhahah.setIconTextGap(20);
+      btnhahah.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnTraCuuActionPerformed(evt);
+            btnhahahActionPerformed(evt);
          }
       });
 
@@ -144,16 +144,16 @@ public class mainFrm extends javax.swing.JFrame {
          }
       });
 
-      btnTraCuu1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-      btnTraCuu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/searching.png"))); // NOI18N
-      btnTraCuu1.setText("TRA CUU");
-      btnTraCuu1.setFocusable(false);
-      btnTraCuu1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-      btnTraCuu1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-      btnTraCuu1.setIconTextGap(20);
-      btnTraCuu1.addActionListener(new java.awt.event.ActionListener() {
+      btnTraCuu.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+      btnTraCuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/searching.png"))); // NOI18N
+      btnTraCuu.setText("TRA CUU");
+      btnTraCuu.setFocusable(false);
+      btnTraCuu.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+      btnTraCuu.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+      btnTraCuu.setIconTextGap(20);
+      btnTraCuu.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnTraCuu1ActionPerformed(evt);
+            btnTraCuuActionPerformed(evt);
          }
       });
 
@@ -163,7 +163,7 @@ public class mainFrm extends javax.swing.JFrame {
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel1Layout.createSequentialGroup()
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(btnTraCuu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(btnhahah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                .addGroup(jPanel1Layout.createSequentialGroup()
                   .addContainerGap()
                   .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +174,7 @@ public class mainFrm extends javax.swing.JFrame {
                            .addComponent(btnQuanLiSach, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                      .addComponent(btnThongKe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                     .addComponent(btnTraCuu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                     .addComponent(btnTraCuu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                .addComponent(jSeparator1)
                .addComponent(jSeparator5))
             .addContainerGap())
@@ -193,11 +193,11 @@ public class mainFrm extends javax.swing.JFrame {
             .addGap(49, 49, 49)
             .addComponent(btnThongKe)
             .addGap(29, 29, 29)
-            .addComponent(btnTraCuu1)
+            .addComponent(btnTraCuu)
             .addGap(42, 42, 42)
             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(39, 39, 39)
-            .addComponent(btnTraCuu)
+            .addComponent(btnhahah)
             .addContainerGap(171, Short.MAX_VALUE))
       );
 
@@ -351,17 +351,22 @@ public class mainFrm extends javax.swing.JFrame {
 		tpnMain.setSelectedComponent(quanLiMuonTraPn);
    }//GEN-LAST:event_btnQuanLiMuonTraActionPerformed
 
-   private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuActionPerformed
+   private void btnhahahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhahahActionPerformed
       // TODO add your handling code here:
-   }//GEN-LAST:event_btnTraCuuActionPerformed
+   }//GEN-LAST:event_btnhahahActionPerformed
 
    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
       // TODO add your handling code here:
    }//GEN-LAST:event_btnThongKeActionPerformed
 
-   private void btnTraCuu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuu1ActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_btnTraCuu1ActionPerformed
+   private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuActionPerformed
+		tpnMain.removeAll();
+		TraCuuDocGiaPn traCuuDocGia = new TraCuuDocGiaPn();
+		tpnMain.addTab("TRA CUU DOC GIA", traCuuDocGia);
+		tpnMain.setSelectedComponent(traCuuDocGia);
+		TraCuuSachPn traCuuSach = new TraCuuSachPn();
+		tpnMain.addTab("TRA CUU SACH", traCuuSach);
+   }//GEN-LAST:event_btnTraCuuActionPerformed
 
    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       // TODO add your handling code here:
@@ -416,7 +421,7 @@ public class mainFrm extends javax.swing.JFrame {
    private javax.swing.JButton btnQuanLiSach;
    private javax.swing.JButton btnThongKe;
    private javax.swing.JButton btnTraCuu;
-   private javax.swing.JButton btnTraCuu1;
+   private javax.swing.JButton btnhahah;
    private javax.swing.JButton jButton1;
    private javax.swing.JFrame jFrame1;
    private javax.swing.JLabel jLabel1;

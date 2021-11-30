@@ -106,6 +106,35 @@ public class DocGiaDao {
 		}
 		return null;
 	}
+	public ArrayList<DocGia> findByName(String name){
+		String sql = "select * from tbl_docgia where hoten like ? or hoten like ? or hoten like ? ";
+		ArrayList<DocGia> list = new ArrayList<>();
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, name + "%");
+			pstm.setString(2, "%" + name + "%");
+			pstm.setString(3, "%" + name);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				String maDocGia = rs.getString("madocgia");
+				String hoTen = rs.getString("hoten");
+				Date ngaySinh = rs.getDate("ngaysinh");
+				int gioiTinh = rs.getInt("gioitinh");
+				String sdt = rs.getString("sdt");
+				String email = rs.getString("email");
+				String diaChi = rs.getString("diachi");
+				DocGia docGia = new DocGia(maDocGia, hoTen, ngaySinh, gioiTinh, sdt, email, diaChi);
+				list.add(docGia);
+			}
+			pstm.close();
+			conn.close();
+			return list;
+		} catch (SQLException ex) {
+			Logger.getLogger(DocGiaDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
 	public DocGia findById(String id){
 		String sql = "select * from tbl_docgia where madocgia = ?";
 		try {
