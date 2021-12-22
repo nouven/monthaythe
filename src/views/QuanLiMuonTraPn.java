@@ -595,7 +595,7 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
    private void tblMuonTraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMuonTraMouseClicked
 		this.setDisable();
 		int row = tblMuonTra.getSelectedRow();
-		if(row > 0){
+		if(row >= 0){
 			String maSach = tblMuonTra.getValueAt(row, 0).toString();
 			String maDocGia = tblMuonTra.getValueAt(row, 1).toString();
 			MuonTra muonTra = dao.findById(maSach, maDocGia, maThuThu);
@@ -680,12 +680,12 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
 			if(choose == 0){
 				boolean isUpdate= dao.update(maSach, maDocGia, maThuThu, ngayThucTra);
 				if(isUpdate == true){
-					MessDialog.showMessDialog(this , "SUA THANH CONG!!", "INFO");
+					MessDialog.showMessDialog(this , "TRA THANH CONG!!", "INFO");
 					list = dao.selectAll();
 					initTbl(model, tblMuonTra, headerTbl, list);
 					this.setDisable();
 				}else{
-					MessDialog.showErrorDialog(this, "SUA THAT BAI!!", "ERROR");
+					MessDialog.showErrorDialog(this, "TRA THAT BAI!!", "ERROR");
 				}
 			}
 		}else{

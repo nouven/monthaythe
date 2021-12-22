@@ -451,7 +451,7 @@ public class QuanLiDanhMucPn extends javax.swing.JPanel {
 
    private void tblDanhMucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhMucMouseClicked
       int row = tblDanhMuc.getSelectedRow();
-      if(row > 0){
+      if(row >= 0){
          DanhMuc danhMuc = danhMucDao.findById(tblDanhMuc.getValueAt(row, 0).toString());
          if(danhMuc == null){
             System.out.println("hshahah");

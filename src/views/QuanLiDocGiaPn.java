@@ -714,7 +714,7 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
    private void tblDocGiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDocGiaMouseClicked
 		this.setDisable();
 		int row = tblDocGia.getSelectedRow();
-		if(row > 0){
+		if(row >= 0){
 			DocGia docGia = dao.findById(tblDocGia.getValueAt(row, 0).toString());
 			if(docGia == null){
 				System.out.println("hshahah");

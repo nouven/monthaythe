@@ -356,7 +356,12 @@ public class mainFrm extends javax.swing.JFrame {
    }//GEN-LAST:event_btnhahahActionPerformed
 
    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
-      // TODO add your handling code here:
+		tpnMain.removeAll();
+		ThongKeDocGiaPn thongKeDocGiaPn = new ThongKeDocGiaPn();
+		tpnMain.addTab("THONG KE DOC GIA", thongKeDocGiaPn);
+		tpnMain.setSelectedComponent(thongKeDocGiaPn);
+		ThongKeSachPn thongKeSachPn = new ThongKeSachPn();
+		tpnMain.addTab("THONG KE SACH", thongKeSachPn);
    }//GEN-LAST:event_btnThongKeActionPerformed
 
    private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuActionPerformed
@@ -366,6 +371,8 @@ public class mainFrm extends javax.swing.JFrame {
 		tpnMain.setSelectedComponent(traCuuDocGia);
 		TraCuuSachPn traCuuSach = new TraCuuSachPn();
 		tpnMain.addTab("TRA CUU SACH", traCuuSach);
+		TraCuuMuonTraPn traCuuMuonTra = new TraCuuMuonTraPn();
+		tpnMain.addTab("TRA CUU MUON TRA", traCuuMuonTra);
    }//GEN-LAST:event_btnTraCuuActionPerformed
 
    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

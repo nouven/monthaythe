@@ -6,6 +6,7 @@ package views;
 
 import controllers.DanhMucDao;
 import controllers.DocGiaDao;
+import controllers.MuonTraDao;
 import controllers.SachDao;
 import foo.Bar;
 import foo.MessDialog;
@@ -18,60 +19,69 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import models.DanhMuc;
 import models.DocGia;
+import models.MuonTra;
 import models.Sach;
 
 /**
  *
  * @author doquy
  */
-public class TraCuuSachPn extends javax.swing.JPanel {
+public class TraCuuMuonTraPn extends javax.swing.JPanel {
 
 	/**
 	 * Creates new form FisrtPn
 	 */
-	private ArrayList<Sach> list;
-	private ArrayList<DanhMuc> danhMucList;
+	private ArrayList<MuonTra> list;
 	private String[] headerTbl = {
+		"MA DOC GIA",
 		"MA SACH",
-		"NXB",
-		"MA DANH MUC",
-		"TEN SACH",
-		"TAC GIA",
-		"SO LUONG",
-		"NOI DUNG TOM TAT",
+		"MA THU THU",
+		"TEN DOC GIA",
+		"NGAY MUON",
+		"SO NGAY MUON",
+		"TINH TRANG",
 	};
 	private DefaultTableModel model = new DefaultTableModel();
-	private SachDao dao = new SachDao();
-	private DanhMucDao danhMucDao = new DanhMucDao();
+	private MuonTraDao dao = new MuonTraDao();
+	private DocGiaDao docGiaDao = new DocGiaDao();
+	private SachDao sachDao = new SachDao();
 	private boolean toggleLuu = false;
-	public TraCuuSachPn() {
+	public TraCuuMuonTraPn() {
 		list = new ArrayList<>();
 		list = dao.selectAll();
-		danhMucList = danhMucDao.selectAll();
 		initComponents();
 		initTbl(model, tblSach, headerTbl, list);
-		initDanhMuc(danhMucList);
 	}
-	private void initTbl(DefaultTableModel model , JTable tbl, String[] headerTbl, ArrayList<Sach> list){
+	private void initTbl(DefaultTableModel model , JTable tbl, String[] headerTbl, ArrayList<MuonTra> list){
 		model.setRowCount(0);
 		model.setColumnIdentifiers(headerTbl);
 		list.forEach((elmt) -> {
+			DocGia docGia = docGiaDao.findById(elmt.getMaDocGia());
+			String tenDocGia = docGia.getHoTen();
+			String tinhTrang = "";
+			if(elmt.getNgayThucTra().toString().equals("2000-02-02")){
+				Date curDate = new Date(System.currentTimeMillis());
+				Date ngayMuon = elmt.getNgayMuon();
+				int hash = (-1) * (ngayMuon.hashCode() - curDate.hashCode()) / (24 * 60 * 60 * 1000);
+				if((hash - elmt.getSoNgayMuon()) <= 0){
+					tinhTrang = "CHUA TRA";
+				}else{
+					tinhTrang = "QUA HAN";
+				}
+			}else{
+				tinhTrang = "DA TRA";
+			}
 			model.addRow(new Object[]{
+				elmt.getMaDocGia(),
 				elmt.getMaSach(),
-				elmt.getNxb(),
-				elmt.getMaDanhMuc(),
-				elmt.getTenSach(),
-				elmt.getTacGia(),
-				elmt.getSoluong(),
-				elmt.getNdTomTat(),
+				elmt.getMaThuThu(),
+				tenDocGia,
+				elmt.getNgayMuon(),
+				elmt.getSoNgayMuon(),
+				tinhTrang,
 			});
 		});
 		tbl.setModel(model);
-	}
-	private void initDanhMuc(ArrayList<DanhMuc> danhMucList){
-		danhMucList.forEach((elmt) -> {
-			cbMaDanhMuc.addItem(elmt.getMaDanhMuc());
-		});
 	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -89,21 +99,22 @@ public class TraCuuSachPn extends javax.swing.JPanel {
       jPanel3 = new javax.swing.JPanel();
       jPanel2 = new javax.swing.JPanel();
       jLabel6 = new javax.swing.JLabel();
-      txtTenSach = new javax.swing.JTextField();
+      txtTenDocGia = new javax.swing.JTextField();
       jPanel9 = new javax.swing.JPanel();
       jLabel10 = new javax.swing.JLabel();
-      cbMaDanhMuc = new javax.swing.JComboBox<>();
       btnTimKiem = new javax.swing.JButton();
+      txtMaDocGia = new javax.swing.JTextField();
       jPanel4 = new javax.swing.JPanel();
       jSeparator4 = new javax.swing.JSeparator();
       lbTenSach = new javax.swing.JLabel();
-      lbMaDanhMuc = new javax.swing.JLabel();
+      lbTenDocGia = new javax.swing.JLabel();
       lbMaSach = new javax.swing.JLabel();
-      lbNxb = new javax.swing.JLabel();
-      lbTacGia = new javax.swing.JLabel();
-      lbSoLuong = new javax.swing.JLabel();
-      jScrollPane2 = new javax.swing.JScrollPane();
-      txtNdTomTat = new javax.swing.JTextArea();
+      lbMaDocGia = new javax.swing.JLabel();
+      lbNgayMuon = new javax.swing.JLabel();
+      lbSoNgayMuon = new javax.swing.JLabel();
+      lbNgayThucTra = new javax.swing.JLabel();
+      lbTinhTrang = new javax.swing.JLabel();
+      lbSoNgayMuon3 = new javax.swing.JLabel();
       lbKetQua = new javax.swing.JLabel();
 
       jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -132,20 +143,20 @@ public class TraCuuSachPn extends javax.swing.JPanel {
 
       jLabel6.setBackground(new java.awt.Color(184, 152, 96));
       jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel6.setText("TEN SACH");
+      jLabel6.setText("TEN DOC GIA");
 
-      txtTenSach.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      txtTenSach.addActionListener(new java.awt.event.ActionListener() {
+      txtTenDocGia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+      txtTenDocGia.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            txtTenSachActionPerformed(evt);
+            txtTenDocGiaActionPerformed(evt);
          }
       });
-      txtTenSach.addKeyListener(new java.awt.event.KeyAdapter() {
+      txtTenDocGia.addKeyListener(new java.awt.event.KeyAdapter() {
          public void keyPressed(java.awt.event.KeyEvent evt) {
-            txtTenSachKeyPressed(evt);
+            txtTenDocGiaKeyPressed(evt);
          }
          public void keyTyped(java.awt.event.KeyEvent evt) {
-            txtTenSachKeyTyped(evt);
+            txtTenDocGiaKeyTyped(evt);
          }
       });
 
@@ -156,27 +167,20 @@ public class TraCuuSachPn extends javax.swing.JPanel {
          .addGroup(jPanel2Layout.createSequentialGroup()
             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(txtTenSach))
+            .addComponent(txtTenDocGia))
       );
       jPanel2Layout.setVerticalGroup(
          jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel2Layout.createSequentialGroup()
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-               .addComponent(txtTenSach, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
+               .addComponent(txtTenDocGia, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
             .addGap(0, 0, Short.MAX_VALUE))
       );
 
       jLabel10.setBackground(new java.awt.Color(184, 152, 96));
       jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel10.setText("MA DANH MUC");
-
-      cbMaDanhMuc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      cbMaDanhMuc.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            cbMaDanhMucActionPerformed(evt);
-         }
-      });
+      jLabel10.setText("MA DOC GIA");
 
       btnTimKiem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
       btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/searching.png"))); // NOI18N
@@ -189,6 +193,21 @@ public class TraCuuSachPn extends javax.swing.JPanel {
          }
       });
 
+      txtMaDocGia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+      txtMaDocGia.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            txtMaDocGiaActionPerformed(evt);
+         }
+      });
+      txtMaDocGia.addKeyListener(new java.awt.event.KeyAdapter() {
+         public void keyPressed(java.awt.event.KeyEvent evt) {
+            txtMaDocGiaKeyPressed(evt);
+         }
+         public void keyTyped(java.awt.event.KeyEvent evt) {
+            txtMaDocGiaKeyTyped(evt);
+         }
+      });
+
       javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
       jPanel9.setLayout(jPanel9Layout);
       jPanel9Layout.setHorizontalGroup(
@@ -196,16 +215,20 @@ public class TraCuuSachPn extends javax.swing.JPanel {
          .addGroup(jPanel9Layout.createSequentialGroup()
             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(cbMaDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+            .addComponent(txtMaDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
             .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
       );
       jPanel9Layout.setVerticalGroup(
          jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(cbMaDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+         .addGroup(jPanel9Layout.createSequentialGroup()
+            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 7, Short.MAX_VALUE))
+         .addGroup(jPanel9Layout.createSequentialGroup()
+            .addComponent(txtMaDocGia)
+            .addContainerGap())
       );
 
       javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -227,42 +250,43 @@ public class TraCuuSachPn extends javax.swing.JPanel {
 
       lbTenSach.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-      lbMaDanhMuc.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+      lbTenDocGia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
       lbMaSach.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-      lbNxb.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+      lbMaDocGia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-      lbTacGia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+      lbNgayMuon.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-      lbSoLuong.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+      lbSoNgayMuon.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-      txtNdTomTat.setColumns(20);
-      txtNdTomTat.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
-      txtNdTomTat.setRows(5);
-      jScrollPane2.setViewportView(txtNdTomTat);
+      lbNgayThucTra.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+      lbTinhTrang.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+      lbSoNgayMuon3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
       javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
       jPanel4.setLayout(jPanel4Layout);
       jPanel4Layout.setHorizontalGroup(
          jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addComponent(jSeparator4)
-         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-               .addComponent(jScrollPane2)
-               .addGroup(jPanel4Layout.createSequentialGroup()
-                  .addContainerGap()
-                  .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(lbMaDanhMuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                     .addComponent(lbMaSach, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
-                     .addComponent(lbTenSach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                     .addComponent(lbTacGia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                     .addComponent(lbSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+         .addGroup(jPanel4Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(lbTenDocGia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(lbMaSach, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+               .addComponent(lbTenSach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(lbNgayMuon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(lbSoNgayMuon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(lbNgayThucTra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(lbTinhTrang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(lbSoNgayMuon3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
          .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                .addContainerGap()
-               .addComponent(lbNxb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(lbMaDocGia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                .addContainerGap()))
       );
       jPanel4Layout.setVerticalGroup(
@@ -275,18 +299,22 @@ public class TraCuuSachPn extends javax.swing.JPanel {
             .addGap(68, 68, 68)
             .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(lbMaDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(lbTenDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(lbTacGia, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(lbNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(lbSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(43, 43, 43)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(lbSoNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(34, 34, 34)
+            .addComponent(lbNgayThucTra, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addComponent(lbTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(23, 23, 23)
+            .addComponent(lbSoNgayMuon3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
          .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                .addGap(141, 141, 141)
-               .addComponent(lbNxb, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(lbMaDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addContainerGap(507, Short.MAX_VALUE)))
       );
 
@@ -325,7 +353,7 @@ public class TraCuuSachPn extends javax.swing.JPanel {
             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(lbKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,63 +371,91 @@ public class TraCuuSachPn extends javax.swing.JPanel {
    private void tblSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSachMouseClicked
 		int row = tblSach.getSelectedRow();
 		if(row >= 0){
-			Sach sach = dao.findById(tblSach.getValueAt(row, 0).toString());
-			if(sach == null){
+			String maDocGia = (String) tblSach.getValueAt(row, 0);
+			String maSach = (String) tblSach.getValueAt(row, 1);
+			String maThuThu = (String) tblSach.getValueAt(row, 2);
+			MuonTra muonTra = dao.findById(maSach, maDocGia, maThuThu);
+			if(muonTra == null){
 				System.out.println("hshahah");
+				return;
 			}
-			if(sach != null){
+			if(muonTra!= null){
+				lbMaDocGia.setText("MA DOC GIA: " + muonTra.getMaDocGia());
+				lbMaSach.setText("MA SACH: " + muonTra.getMaSach());
+				lbMaDocGia.setText("MA DOC GIA: " + muonTra.getMaDocGia());
+				lbNgayMuon.setText("NGAY MUON: " + muonTra.getNgayMuon());
+				if(muonTra.getNgayThucTra().toString().equals("2000-02-02")){
+					lbNgayThucTra.setText("NGAY THUC TRA: " + "null");
+				}else{
+					lbNgayThucTra.setText("NGAY THUC TRA: " + muonTra.getNgayThucTra());
+				}
+				lbTinhTrang.setText("TINH TRANG: " + tblSach.getValueAt(row, 6));
+				DocGia docGia = docGiaDao.findById(maDocGia);
+				lbTenDocGia.setText("TEN DOC GIA: " + docGia.getHoTen());
+				Sach sach = sachDao.findById(maSach);
 				lbTenSach.setText("TEN SACH: " + sach.getTenSach());
-				lbTacGia.setText("TAC GIA: " + sach.getTacGia());
-				lbMaSach.setText("MA SACH: " + sach.getMaSach());
-				lbMaDanhMuc.setText("MA DANH MUC: " + sach.getMaDanhMuc());
-				lbSoLuong.setText("SO LUONG: " + sach.getSoluong());
-				txtNdTomTat.setText("ND TOM TAT: " + sach.getNdTomTat());
-				lbNxb.setText("NXB: " + sach.getNxb());
 			}
 		}
    }//GEN-LAST:event_tblSachMouseClicked
 
    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-		String maDanhMuc = cbMaDanhMuc.getItemAt(cbMaDanhMuc.getSelectedIndex());
-		ArrayList<Sach> sachList = dao.findByCategory(maDanhMuc);
-		if(sachList == null){
+		String maDocGia = txtMaDocGia.getText();
+		ArrayList<MuonTra> listMuonTra = new ArrayList<>();
+		listMuonTra = dao.findByIdDocGia(maDocGia);
+		if(listMuonTra == null){
 			lbKetQua.setText("SO KET QUA TIM KIEM: 0");
 		}else{
-			lbKetQua.setText("SO KET QUA TIM KIEM: " + sachList.size());
-			initTbl(model, tblSach, headerTbl, sachList);
+			lbKetQua.setText("SO KET QUA TIM KIEM: " + listMuonTra.size());
+			initTbl(model, tblSach, headerTbl, listMuonTra);
 		}
    }//GEN-LAST:event_btnTimKiemActionPerformed
 
-   private void txtTenSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenSachActionPerformed
+   private void txtTenDocGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenDocGiaActionPerformed
       // TODO add your handling code here:
-   }//GEN-LAST:event_txtTenSachActionPerformed
+   }//GEN-LAST:event_txtTenDocGiaActionPerformed
 
-   private void cbMaDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaDanhMucActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_cbMaDanhMucActionPerformed
-
-   private void txtTenSachKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenSachKeyTyped
+   private void txtTenDocGiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenDocGiaKeyTyped
 		
-   }//GEN-LAST:event_txtTenSachKeyTyped
+   }//GEN-LAST:event_txtTenDocGiaKeyTyped
 
-   private void txtTenSachKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenSachKeyPressed
-		String tenSach = txtTenSach.getText();
-		if(tenSach.equals("")){
+   private void txtTenDocGiaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTenDocGiaKeyPressed
+		ArrayList<MuonTra> listMuonTra = new ArrayList<>();
+		String tenDocGia = txtTenDocGia.getText();
+		if(tenDocGia.equals("")){
 			lbKetQua.setText("SO KET QUA TIM KIEM: 0");
 		}
-		ArrayList<Sach> sachList = dao.findByName(tenSach);
-		if(sachList == null){
+		ArrayList<DocGia> docGiaList = docGiaDao.findByName(tenDocGia);
+		if(docGiaList == null){
 			lbKetQua.setText("SO KET QUA TIM KIEM: 0");
 		}else{
-			lbKetQua.setText("SO KET QUA TIM KIEM: " + sachList.size());
-			initTbl(model, tblSach, headerTbl, sachList);
+			docGiaList.forEach((elmt) -> {
+				ArrayList<MuonTra> listMuonTra2= dao.findByIdDocGia(elmt.getMaDocGia());
+				if(listMuonTra2 != null){
+					listMuonTra2.forEach((elmt2)->{
+						listMuonTra.add(elmt2);
+					});
+				}
+			});
+			lbKetQua.setText("SO KET QUA TIM KIEM: " + listMuonTra.size());
+			initTbl(model, tblSach, headerTbl, listMuonTra);
 		}
-   }//GEN-LAST:event_txtTenSachKeyPressed
+   }//GEN-LAST:event_txtTenDocGiaKeyPressed
+
+   private void txtMaDocGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaDocGiaActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_txtMaDocGiaActionPerformed
+
+   private void txtMaDocGiaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaDocGiaKeyPressed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_txtMaDocGiaKeyPressed
+
+   private void txtMaDocGiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaDocGiaKeyTyped
+      // TODO add your handling code here:
+   }//GEN-LAST:event_txtMaDocGiaKeyTyped
 
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btnTimKiem;
-   private javax.swing.JComboBox<String> cbMaDanhMuc;
    private javax.swing.JLabel jLabel10;
    private javax.swing.JLabel jLabel6;
    private javax.swing.JPanel jPanel2;
@@ -407,19 +463,21 @@ public class TraCuuSachPn extends javax.swing.JPanel {
    private javax.swing.JPanel jPanel4;
    private javax.swing.JPanel jPanel9;
    private javax.swing.JScrollPane jScrollPane1;
-   private javax.swing.JScrollPane jScrollPane2;
    private javax.swing.JSeparator jSeparator1;
    private javax.swing.JSeparator jSeparator2;
    private javax.swing.JSeparator jSeparator4;
    private javax.swing.JLabel lbKetQua;
-   private javax.swing.JLabel lbMaDanhMuc;
+   private javax.swing.JLabel lbMaDocGia;
    private javax.swing.JLabel lbMaSach;
-   private javax.swing.JLabel lbNxb;
-   private javax.swing.JLabel lbSoLuong;
-   private javax.swing.JLabel lbTacGia;
+   private javax.swing.JLabel lbNgayMuon;
+   private javax.swing.JLabel lbNgayThucTra;
+   private javax.swing.JLabel lbSoNgayMuon;
+   private javax.swing.JLabel lbSoNgayMuon3;
+   private javax.swing.JLabel lbTenDocGia;
    private javax.swing.JLabel lbTenSach;
+   private javax.swing.JLabel lbTinhTrang;
    private javax.swing.JTable tblSach;
-   private javax.swing.JTextArea txtNdTomTat;
-   private javax.swing.JTextField txtTenSach;
+   private javax.swing.JTextField txtMaDocGia;
+   private javax.swing.JTextField txtTenDocGia;
    // End of variables declaration//GEN-END:variables
 }

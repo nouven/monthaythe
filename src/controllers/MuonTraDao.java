@@ -79,6 +79,84 @@ public class MuonTraDao {
 		}
 		return false;
 	}
+	public ArrayList<MuonTra> quaHanList(){
+		String sql = "select * from tbl_muontra where ngaythuctra = ? and (curdate() - ngaymuon) > songaymuon";
+		ArrayList<MuonTra> list = new ArrayList<>();
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, "2000-02-02");
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				String maSach = rs.getString("masach");
+				String maDocGia = rs.getString("madocgia");
+				String maThuThu = rs.getString("mathuthu");
+				Date ngayMuon = rs.getDate("ngaymuon");
+				int soNgayMuon = rs.getInt("songaymuon");
+				Date ngayThucTra = rs.getDate("ngaythuctra");
+				MuonTra muonTra = new MuonTra(maSach, maDocGia, maThuThu, ngayMuon, soNgayMuon, ngayThucTra);
+				list.add(muonTra);
+			}
+			pstm.close();
+			conn.close();
+			return list;
+		} catch (SQLException ex) {
+			Logger.getLogger(MuonTraDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
+	public ArrayList<MuonTra> chuaTraList(){
+		String sql = "select * from tbl_muontra where ngaythuctra = ?";
+		ArrayList<MuonTra> list = new ArrayList<>();
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, "2000-02-02");
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				String maSach = rs.getString("masach");
+				String maDocGia = rs.getString("madocgia");
+				String maThuThu = rs.getString("mathuthu");
+				Date ngayMuon = rs.getDate("ngaymuon");
+				int soNgayMuon = rs.getInt("songaymuon");
+				Date ngayThucTra = rs.getDate("ngaythuctra");
+				MuonTra muonTra = new MuonTra(maSach, maDocGia, maThuThu, ngayMuon, soNgayMuon, ngayThucTra);
+				list.add(muonTra);
+			}
+			pstm.close();
+			conn.close();
+			return list;
+		} catch (SQLException ex) {
+			Logger.getLogger(MuonTraDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
+	public ArrayList<MuonTra> sachMuonNhieuList(){
+		String sql = "select * from tbl_muontra where ngaythuctra = ?";
+		ArrayList<MuonTra> list = new ArrayList<>();
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, "2000-02-02");
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				String maSach = rs.getString("masach");
+				String maDocGia = rs.getString("madocgia");
+				String maThuThu = rs.getString("mathuthu");
+				Date ngayMuon = rs.getDate("ngaymuon");
+				int soNgayMuon = rs.getInt("songaymuon");
+				Date ngayThucTra = rs.getDate("ngaythuctra");
+				MuonTra muonTra = new MuonTra(maSach, maDocGia, maThuThu, ngayMuon, soNgayMuon, ngayThucTra);
+				list.add(muonTra);
+			}
+			pstm.close();
+			conn.close();
+			return list;
+		} catch (SQLException ex) {
+			Logger.getLogger(MuonTraDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
 	public ArrayList<MuonTra> selectAll(){
 		String sql = "select * from tbl_muontra ";
 		ArrayList<MuonTra> list = new ArrayList<>();
@@ -93,6 +171,31 @@ public class MuonTraDao {
 				Date ngayMuon = rs.getDate("ngaymuon");
 				int soNgayMuon = rs.getInt("songaymuon");
 				Date ngayThucTra = rs.getDate("ngaythuctra");
+				MuonTra muonTra = new MuonTra(maSach, maDocGia, maThuThu, ngayMuon, soNgayMuon, ngayThucTra);
+				list.add(muonTra);
+			}
+			pstm.close();
+			conn.close();
+			return list;
+		} catch (SQLException ex) {
+			Logger.getLogger(MuonTraDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
+	public ArrayList<MuonTra> findByIdDocGia(String maDocGia){
+		String sql = "select * from tbl_muontra where madocgia = ?";
+		ArrayList<MuonTra> list = new ArrayList<>();
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, maDocGia);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				Date ngayMuon = rs.getDate("ngaymuon");
+				int soNgayMuon = rs.getInt("songaymuon");
+				Date	ngayThucTra = rs.getDate("ngaythuctra");
+				String maSach = rs.getString("masach");
+				String maThuThu = rs.getString("mathuthu");
 				MuonTra muonTra = new MuonTra(maSach, maDocGia, maThuThu, ngayMuon, soNgayMuon, ngayThucTra);
 				list.add(muonTra);
 			}

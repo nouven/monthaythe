@@ -603,7 +603,7 @@ public class QuanLiSachPn extends javax.swing.JPanel {
    private void tblSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSachMouseClicked
 		this.setDisable();
 		int row = tblSach.getSelectedRow();
-		if(row > 0){
+		if(row >= 0){
 			Sach sach = dao.findById(tblSach.getValueAt(row, 0).toString());
 			if(sach == null){
 				System.out.println("hshahah");

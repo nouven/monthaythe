@@ -4,8 +4,6 @@
  */
 package controllers;
 
-import com.mysql.cj.jdbc.PreparedStatementWrapper;
-import com.mysql.cj.protocol.Resultset;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;

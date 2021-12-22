@@ -187,16 +187,16 @@ public class LoginFrm extends javax.swing.JFrame {
    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
 		String username = txtUsername.getText();
 		String password = pwPassword.getText();
-		if(username.equals("") || password.equals("")){
+		if (username.equals("") || password.equals("")) {
 			MessDialog.showErrorDialog(this, "CAC TRUONG KHONG DUOC DE TRONG!!", "ERROR!!");
 			return;
 		}
 		ThuThuDao dao = new ThuThuDao();
 		ThuThu thuThu = dao.login(username, password);
-		if(thuThu == null){
+		if (thuThu == null) {
 			MessDialog.showErrorDialog(this, "TEN DANG NHAP HOAC MAT KHAU KHONG CHINH XAC!!!", "ERROR!!");
 			return;
-		}else{
+		} else {
 			this.dispose();
 			new mainFrm(thuThu.getMaThuThu(), thuThu.getHoTen()).setVisible(true);
 		}
