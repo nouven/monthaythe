@@ -92,6 +92,27 @@ public class DanhMucDao {
 		}
 		return null;
 	}
+	public DanhMuc findByName(String name){
+		String sql = "select * from tbl_danhmuc where madanhmuc = ?";
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, name);
+			ResultSet rs = pstm.executeQuery();
+			DanhMuc danhMuc = null;
+			if(rs.next()){
+				String maDanhMuc = rs.getString("madanhmuc");
+				String tenDanhMuc = rs.getString("ten");
+				danhMuc = new DanhMuc(maDanhMuc, tenDanhMuc);
+			}
+			pstm.close();
+			conn.close();
+			return danhMuc;
+		} catch (SQLException ex) {
+			Logger.getLogger(DanhMucDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
 	public DanhMuc findById(String id){
 		String sql = "select * from tbl_danhmuc where madanhmuc = ?";
 		try {

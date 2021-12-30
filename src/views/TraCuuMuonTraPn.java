@@ -96,16 +96,7 @@ public class TraCuuMuonTraPn extends javax.swing.JPanel {
       jSeparator2 = new javax.swing.JSeparator();
       jScrollPane1 = new javax.swing.JScrollPane();
       tblSach = new javax.swing.JTable();
-      jPanel3 = new javax.swing.JPanel();
-      jPanel2 = new javax.swing.JPanel();
-      jLabel6 = new javax.swing.JLabel();
-      txtTenDocGia = new javax.swing.JTextField();
-      jPanel9 = new javax.swing.JPanel();
-      jLabel10 = new javax.swing.JLabel();
-      btnTimKiem = new javax.swing.JButton();
-      txtMaDocGia = new javax.swing.JTextField();
       jPanel4 = new javax.swing.JPanel();
-      jSeparator4 = new javax.swing.JSeparator();
       lbTenSach = new javax.swing.JLabel();
       lbTenDocGia = new javax.swing.JLabel();
       lbMaSach = new javax.swing.JLabel();
@@ -116,6 +107,13 @@ public class TraCuuMuonTraPn extends javax.swing.JPanel {
       lbTinhTrang = new javax.swing.JLabel();
       lbSoNgayMuon3 = new javax.swing.JLabel();
       lbKetQua = new javax.swing.JLabel();
+      jLabel10 = new javax.swing.JLabel();
+      txtMaDocGia = new javax.swing.JTextField();
+      btnTimKiem = new javax.swing.JButton();
+      txtTenDocGia = new javax.swing.JTextField();
+      jLabel6 = new javax.swing.JLabel();
+
+      setBackground(new java.awt.Color(255, 255, 204));
 
       jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -141,113 +139,6 @@ public class TraCuuMuonTraPn extends javax.swing.JPanel {
       });
       jScrollPane1.setViewportView(tblSach);
 
-      jLabel6.setBackground(new java.awt.Color(184, 152, 96));
-      jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel6.setText("TEN DOC GIA");
-
-      txtTenDocGia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      txtTenDocGia.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            txtTenDocGiaActionPerformed(evt);
-         }
-      });
-      txtTenDocGia.addKeyListener(new java.awt.event.KeyAdapter() {
-         public void keyPressed(java.awt.event.KeyEvent evt) {
-            txtTenDocGiaKeyPressed(evt);
-         }
-         public void keyTyped(java.awt.event.KeyEvent evt) {
-            txtTenDocGiaKeyTyped(evt);
-         }
-      });
-
-      javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-      jPanel2.setLayout(jPanel2Layout);
-      jPanel2Layout.setHorizontalGroup(
-         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel2Layout.createSequentialGroup()
-            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(txtTenDocGia))
-      );
-      jPanel2Layout.setVerticalGroup(
-         jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel2Layout.createSequentialGroup()
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-               .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-               .addComponent(txtTenDocGia, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
-            .addGap(0, 0, Short.MAX_VALUE))
-      );
-
-      jLabel10.setBackground(new java.awt.Color(184, 152, 96));
-      jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      jLabel10.setText("MA DOC GIA");
-
-      btnTimKiem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-      btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/searching.png"))); // NOI18N
-      btnTimKiem.setText("TIM KIEM");
-      btnTimKiem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-      btnTimKiem.setIconTextGap(20);
-      btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnTimKiemActionPerformed(evt);
-         }
-      });
-
-      txtMaDocGia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      txtMaDocGia.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            txtMaDocGiaActionPerformed(evt);
-         }
-      });
-      txtMaDocGia.addKeyListener(new java.awt.event.KeyAdapter() {
-         public void keyPressed(java.awt.event.KeyEvent evt) {
-            txtMaDocGiaKeyPressed(evt);
-         }
-         public void keyTyped(java.awt.event.KeyEvent evt) {
-            txtMaDocGiaKeyTyped(evt);
-         }
-      });
-
-      javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-      jPanel9.setLayout(jPanel9Layout);
-      jPanel9Layout.setHorizontalGroup(
-         jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel9Layout.createSequentialGroup()
-            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(txtMaDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-            .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-      );
-      jPanel9Layout.setVerticalGroup(
-         jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel9Layout.createSequentialGroup()
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(0, 7, Short.MAX_VALUE))
-         .addGroup(jPanel9Layout.createSequentialGroup()
-            .addComponent(txtMaDocGia)
-            .addContainerGap())
-      );
-
-      javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-      jPanel3.setLayout(jPanel3Layout);
-      jPanel3Layout.setHorizontalGroup(
-         jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-         .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-      );
-      jPanel3Layout.setVerticalGroup(
-         jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel3Layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(23, Short.MAX_VALUE))
-      );
-
       lbTenSach.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
       lbTenDocGia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -270,12 +161,11 @@ public class TraCuuMuonTraPn extends javax.swing.JPanel {
       jPanel4.setLayout(jPanel4Layout);
       jPanel4Layout.setHorizontalGroup(
          jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addComponent(jSeparator4)
          .addGroup(jPanel4Layout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addComponent(lbTenDocGia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-               .addComponent(lbMaSach, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+               .addComponent(lbMaSach, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                .addComponent(lbTenSach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                .addComponent(lbNgayMuon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                .addComponent(lbSoNgayMuon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -286,7 +176,7 @@ public class TraCuuMuonTraPn extends javax.swing.JPanel {
          .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                .addContainerGap()
-               .addComponent(lbMaDocGia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(lbMaDocGia, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                .addContainerGap()))
       );
       jPanel4Layout.setVerticalGroup(
@@ -296,9 +186,7 @@ public class TraCuuMuonTraPn extends javax.swing.JPanel {
             .addComponent(lbMaSach, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(lbTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(68, 68, 68)
-            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGap(95, 95, 95)
             .addComponent(lbTenDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(lbNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,61 +198,123 @@ public class TraCuuMuonTraPn extends javax.swing.JPanel {
             .addComponent(lbTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(23, 23, 23)
             .addComponent(lbSoNgayMuon3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap(87, Short.MAX_VALUE))
          .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                .addGap(141, 141, 141)
                .addComponent(lbMaDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addContainerGap(507, Short.MAX_VALUE)))
+               .addContainerGap(460, Short.MAX_VALUE)))
       );
 
       lbKetQua.setBackground(new java.awt.Color(184, 152, 96));
-      lbKetQua.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+      lbKetQua.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
       lbKetQua.setText("SO KET QUA TIM KIEM: ");
+
+      jLabel10.setBackground(new java.awt.Color(184, 152, 96));
+      jLabel10.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+      jLabel10.setText("MA DOC GIA");
+
+      txtMaDocGia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+      txtMaDocGia.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            txtMaDocGiaActionPerformed(evt);
+         }
+      });
+      txtMaDocGia.addKeyListener(new java.awt.event.KeyAdapter() {
+         public void keyPressed(java.awt.event.KeyEvent evt) {
+            txtMaDocGiaKeyPressed(evt);
+         }
+         public void keyTyped(java.awt.event.KeyEvent evt) {
+            txtMaDocGiaKeyTyped(evt);
+         }
+      });
+
+      btnTimKiem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+      btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/searching.png"))); // NOI18N
+      btnTimKiem.setText("TIM KIEM");
+      btnTimKiem.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+      btnTimKiem.setIconTextGap(20);
+      btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnTimKiemActionPerformed(evt);
+         }
+      });
+
+      txtTenDocGia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+      txtTenDocGia.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            txtTenDocGiaActionPerformed(evt);
+         }
+      });
+      txtTenDocGia.addKeyListener(new java.awt.event.KeyAdapter() {
+         public void keyPressed(java.awt.event.KeyEvent evt) {
+            txtTenDocGiaKeyPressed(evt);
+         }
+         public void keyTyped(java.awt.event.KeyEvent evt) {
+            txtTenDocGiaKeyTyped(evt);
+         }
+      });
+
+      jLabel6.setBackground(new java.awt.Color(184, 152, 96));
+      jLabel6.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+      jLabel6.setText("TEN DOC GIA");
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
       this.setLayout(layout);
       layout.setHorizontalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                     .addGap(158, 158, 158)
-                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lbKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 916, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                  .addGroup(layout.createSequentialGroup()
-                     .addContainerGap()
-                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(22, 22, 22)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+               .addComponent(jSeparator2)
                .addGroup(layout.createSequentialGroup()
-                  .addContainerGap()
-                  .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1064, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGap(40, 40, 40)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(lbKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(txtTenDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMaDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                  .addGap(80, 80, 80)
+                  .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1083, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(136, Short.MAX_VALUE))
+            .addGap(72, 72, 72))
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
-            .addGap(29, 29, 29)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(lbKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(138, 138, 138))
-         .addGroup(layout.createSequentialGroup()
-            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(0, 0, Short.MAX_VALUE))
-         .addGroup(layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGap(127, 127, 127))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(layout.createSequentialGroup()
+                  .addGap(26, 26, 26)
+                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                           .addComponent(txtMaDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                           .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(txtTenDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(lbKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE))))
+               .addGroup(layout.createSequentialGroup()
+                  .addGap(60, 60, 60)
+                  .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap(79, Short.MAX_VALUE))
       );
    }// </editor-fold>//GEN-END:initComponents
 
@@ -374,7 +324,7 @@ public class TraCuuMuonTraPn extends javax.swing.JPanel {
 			String maDocGia = (String) tblSach.getValueAt(row, 0);
 			String maSach = (String) tblSach.getValueAt(row, 1);
 			String maThuThu = (String) tblSach.getValueAt(row, 2);
-			MuonTra muonTra = dao.findById(maSach, maDocGia, maThuThu);
+			MuonTra muonTra = dao.findById(maSach, maDocGia);
 			if(muonTra == null){
 				System.out.println("hshahah");
 				return;
@@ -458,14 +408,10 @@ public class TraCuuMuonTraPn extends javax.swing.JPanel {
    private javax.swing.JButton btnTimKiem;
    private javax.swing.JLabel jLabel10;
    private javax.swing.JLabel jLabel6;
-   private javax.swing.JPanel jPanel2;
-   private javax.swing.JPanel jPanel3;
    private javax.swing.JPanel jPanel4;
-   private javax.swing.JPanel jPanel9;
    private javax.swing.JScrollPane jScrollPane1;
    private javax.swing.JSeparator jSeparator1;
    private javax.swing.JSeparator jSeparator2;
-   private javax.swing.JSeparator jSeparator4;
    private javax.swing.JLabel lbKetQua;
    private javax.swing.JLabel lbMaDocGia;
    private javax.swing.JLabel lbMaSach;

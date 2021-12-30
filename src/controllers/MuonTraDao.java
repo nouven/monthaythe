@@ -42,17 +42,16 @@ public class MuonTraDao {
 		}
 		return false;
 	}
-	public boolean update(String maSach, String maDocGia, String maThuThu, Date ngayThucTra){
+	public boolean update(String maSach, String maDocGia,  Date ngayThucTra){
 		String sql = "update tbl_muontra " + 
 				  " set ngaythuctra = ? "
-				  + " where masach = ? and madocgia = ? and mathuthu =? ";
+				  + " where masach = ? and madocgia = ? ";
 		try {
 			Connection conn = foo.ConnMysql.openConnection();
 			PreparedStatement pstm = conn.prepareStatement(sql);
 			pstm.setDate(1, ngayThucTra);
 			pstm.setString(2, maSach);
 			pstm.setString(3, maDocGia);
-			pstm.setString(4, maThuThu);
 			pstm.executeUpdate();
 			pstm.close();
 			conn.close();
@@ -62,14 +61,13 @@ public class MuonTraDao {
 		}
 		return false;
 	}
-	public boolean delete(String maSach, String maDocGia, String maThuThu){
-		String sql = "delete from tbl_muontra where masach = ? and madocgia = ? and mathuthu = ?";
+	public boolean delete(String maSach, String maDocGia){
+		String sql = "delete from tbl_muontra where masach = ? and madocgia = ? ";
 		try {
 			Connection conn = foo.ConnMysql.openConnection();
 			PreparedStatement pstm = conn.prepareStatement(sql);
 			pstm.setString(1, maSach);
 			pstm.setString(2, maDocGia);
-			pstm.setString(3, maThuThu);
 			pstm.executeUpdate();
 			pstm.close();
 			conn.close();
@@ -207,20 +205,61 @@ public class MuonTraDao {
 		}
 		return null;
 	}
-	public MuonTra findById(String maSach, String maDocGia, String maThuThu){
-		String sql = "select * from tbl_muontra where masach = ? and madocgia = ? and mathuthu = ?";
+	public int  countDaMuon(String maDocGia){
+		String sql = "select  count(*) as soLuong from tbl_muontra where "
+				  + " madocgia = ?";
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, maDocGia);
+			ResultSet rs = pstm.executeQuery();
+			if(rs.next()){
+				int soLuong = rs.getInt("soLuong");
+				return soLuong;
+			}
+			pstm.close();
+			conn.close();
+			return 0;
+		} catch (SQLException ex) {
+			Logger.getLogger(MuonTraDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return 0;
+	}
+	public int  countDaTra(String maDocGia){
+		String sql = "select  count(*) as soLuong from tbl_muontra where "
+				  + " madocgia = ? and ngaythuctra != ?";
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, maDocGia);
+			pstm.setString(2, "2000-02-02");
+			ResultSet rs = pstm.executeQuery();
+			if(rs.next()){
+				int soLuong = rs.getInt("soLuong");
+				return soLuong;
+			}
+			pstm.close();
+			conn.close();
+			return 0;
+		} catch (SQLException ex) {
+			Logger.getLogger(MuonTraDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return 0;
+	}
+	public MuonTra findById(String maSach, String maDocGia ){
+		String sql = "select * from tbl_muontra where masach = ? and madocgia = ? ";
 		try {
 			Connection conn = foo.ConnMysql.openConnection();
 			PreparedStatement pstm = conn.prepareStatement(sql);
 			pstm.setString(1, maSach);
 			pstm.setString(2, maDocGia);
-			pstm.setString(3, maThuThu);
 			ResultSet rs = pstm.executeQuery();
 			MuonTra muonTra = null;
 			if(rs.next()){
 				Date ngayMuon = rs.getDate("ngaymuon");
 				int soNgayMuon = rs.getInt("songaymuon");
 				Date	ngayThucTra = rs.getDate("ngaythuctra");
+				String maThuThu = rs.getString("mathuthu");
 				muonTra = new MuonTra(maSach, maDocGia, maThuThu, ngayMuon, soNgayMuon, ngayThucTra);
 			}
 			pstm.close();
