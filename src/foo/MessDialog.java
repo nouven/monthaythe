@@ -21,4 +21,7 @@ public class MessDialog {
 		return JOptionPane.showConfirmDialog(parent, title, content,
 			JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 	}
+	public static String showEnterText(Component parent, String title, String content){
+		return JOptionPane.showInputDialog(parent , title);
+	}
 }

@@ -12,12 +12,12 @@ import models.ThuThu;
  *
  * @author doquy
  */
-public class LoginFrm extends javax.swing.JFrame {
+public class LoginWithAdFrm extends javax.swing.JFrame {
 
 	/**
 	 * Creates new form LoginFrm
 	 */
-	public LoginFrm() {
+	public LoginWithAdFrm() {
 		initComponents();
 		this.setLocationRelativeTo(null);
 	}
@@ -34,18 +34,17 @@ public class LoginFrm extends javax.swing.JFrame {
       jSeparator1 = new javax.swing.JSeparator();
       jLabel1 = new javax.swing.JLabel();
       btnLogin = new javax.swing.JButton();
-      btnLoginWithAd = new javax.swing.JButton();
+      btnBack = new javax.swing.JButton();
       pwPassword = new javax.swing.JPasswordField();
       jLabel5 = new javax.swing.JLabel();
-      txtUsername = new javax.swing.JTextField();
-      jLabel2 = new javax.swing.JLabel();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
       setTitle("LOGIN");
-      setBackground(new java.awt.Color(255, 255, 102));
+      setBackground(new java.awt.Color(255, 255, 153));
 
       jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+      jLabel1.setBackground(new java.awt.Color(255, 255, 153));
       jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
       jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/learning.png"))); // NOI18N
 
@@ -60,30 +59,22 @@ public class LoginFrm extends javax.swing.JFrame {
          }
       });
 
-      btnLoginWithAd.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-      btnLoginWithAd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/man.png"))); // NOI18N
-      btnLoginWithAd.setText("ADMINISTRATOR");
-      btnLoginWithAd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-      btnLoginWithAd.setIconTextGap(10);
-      btnLoginWithAd.addActionListener(new java.awt.event.ActionListener() {
+      btnBack.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+      btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icon_previous.png"))); // NOI18N
+      btnBack.setText("Back");
+      btnBack.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+      btnBack.setIconTextGap(10);
+      btnBack.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnLoginWithAdActionPerformed(evt);
+            btnBackActionPerformed(evt);
          }
       });
 
       pwPassword.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-      pwPassword.setText("qwe@123");
 
       jLabel5.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
       jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-      jLabel5.setText("PASSWORD:");
-
-      txtUsername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-      txtUsername.setText("nouven");
-
-      jLabel2.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-      jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-      jLabel2.setText("USERNAME:");
+      jLabel5.setText("AD PASSWORD :");
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
@@ -94,17 +85,14 @@ public class LoginFrm extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(42, 42, 42)
             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(85, 85, 85)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-               .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(66, 66, 66)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-               .addComponent(txtUsername)
-               .addComponent(pwPassword)
-               .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-               .addComponent(btnLoginWithAd, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE))
-            .addContainerGap(90, Short.MAX_VALUE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(pwPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(117, 117, 117))
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,47 +106,42 @@ public class LoginFrm extends javax.swing.JFrame {
                   .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                   .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGroup(layout.createSequentialGroup()
-                  .addGap(129, 129, 129)
+                  .addGap(96, 96, 96)
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                     .addComponent(txtUsername)
-                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                  .addGap(18, 18, 18)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                     .addComponent(pwPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                     .addComponent(pwPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                   .addGap(27, 27, 27)
                   .addComponent(btnLogin)
-                  .addGap(38, 38, 38)
-                  .addComponent(btnLoginWithAd)
-                  .addGap(14, 14, 14)))
-            .addContainerGap(57, Short.MAX_VALUE))
+                  .addGap(40, 40, 40)
+                  .addComponent(btnBack)
+                  .addGap(89, 89, 89)))
+            .addContainerGap(59, Short.MAX_VALUE))
       );
 
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-		String username = txtUsername.getText();
 		String password = pwPassword.getText();
-		if (username.equals("") || password.equals("")) {
-			MessDialog.showErrorDialog(this, "CAC TRUONG KHONG DUOC DE TRONG!!", "ERROR!!");
+		if (password.equals("")) {
+			MessDialog.showErrorDialog(this, "Các trường không được để !!", "ERROR!!");
 			return;
 		}
 		ThuThuDao dao = new ThuThuDao();
-		ThuThu thuThu = dao.login(username, password);
+		ThuThu thuThu = dao.login("administrator", password);
 		if (thuThu == null) {
-			MessDialog.showErrorDialog(this, "TEN DANG NHAP HOAC MAT KHAU KHONG CHINH XAC!!!", "ERROR!!");
+			MessDialog.showErrorDialog(this, "Tên đăng nhập hoặc mật khẩu không chính !!", "ERROR!!");
 			return;
 		} else {
 			this.dispose();
-			new mainFrm(thuThu.getMaThuThu(), thuThu.getHoTen()).setVisible(true);
+			new MainAdFrm().setVisible(true);
 		}
    }//GEN-LAST:event_btnLoginActionPerformed
 
-   private void btnLoginWithAdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginWithAdActionPerformed
+   private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 		this.dispose();
-		new LoginWithAdFrm().setVisible(true);
-   }//GEN-LAST:event_btnLoginWithAdActionPerformed
+		new LoginFrm().setVisible(true);
+   }//GEN-LAST:event_btnBackActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -177,32 +160,31 @@ public class LoginFrm extends javax.swing.JFrame {
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(LoginWithAdFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(LoginWithAdFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(LoginWithAdFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(LoginWithAdFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
+		//</editor-fold>
 		//</editor-fold>
 
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new LoginFrm().setVisible(true);
+				new LoginWithAdFrm().setVisible(true);
 			}
 		});
 	}
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JButton btnBack;
    private javax.swing.JButton btnLogin;
-   private javax.swing.JButton btnLoginWithAd;
    private javax.swing.JLabel jLabel1;
-   private javax.swing.JLabel jLabel2;
    private javax.swing.JLabel jLabel5;
    private javax.swing.JSeparator jSeparator1;
    private javax.swing.JPasswordField pwPassword;
-   private javax.swing.JTextField txtUsername;
    // End of variables declaration//GEN-END:variables
 }

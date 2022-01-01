@@ -103,6 +103,46 @@ public class MuonTraDao {
 		}
 		return null;
 	}
+	public ArrayList<String> banDocMuonSachQuaHan(){
+		String sql = "select distinct madocgia from tbl_muontra where ngaythuctra = ? and (curdate() - ngaymuon) > songaymuon";
+		ArrayList<String> list = new ArrayList<>();
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, "2000-02-02");
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				String maDocGia = rs.getString("madocgia");
+				list.add(maDocGia);
+			}
+			pstm.close();
+			conn.close();
+			return list;
+		} catch (SQLException ex) {
+			Logger.getLogger(MuonTraDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
+	public ArrayList<String> banDocChuaTraSach(){
+		String sql = "select distinct madocgia from tbl_muontra where ngaythuctra = ?";
+		ArrayList<String> list = new ArrayList<>();
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, "2000-02-02");
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				String maDocGia = rs.getString("madocgia");
+				list.add(maDocGia);
+			}
+			pstm.close();
+			conn.close();
+			return list;
+		} catch (SQLException ex) {
+			Logger.getLogger(MuonTraDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
 	public ArrayList<MuonTra> chuaTraList(){
 		String sql = "select * from tbl_muontra where ngaythuctra = ?";
 		ArrayList<MuonTra> list = new ArrayList<>();
@@ -146,6 +186,28 @@ public class MuonTraDao {
 				Date ngayThucTra = rs.getDate("ngaythuctra");
 				MuonTra muonTra = new MuonTra(maSach, maDocGia, maThuThu, ngayMuon, soNgayMuon, ngayThucTra);
 				list.add(muonTra);
+			}
+			pstm.close();
+			conn.close();
+			return list;
+		} catch (SQLException ex) {
+			Logger.getLogger(MuonTraDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
+	public ArrayList<String> topSachMuonNhieu(){
+		String sql = "select masach, count(masach) as x from tbl_muontra "
+				  + " group by masach "
+				  + " order by x desc"
+				  + " limit 5";
+		ArrayList<String> list = new ArrayList<>();
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				String maSach = rs.getString("masach");
+				list.add(maSach);
 			}
 			pstm.close();
 			conn.close();
@@ -233,6 +295,26 @@ public class MuonTraDao {
 			PreparedStatement pstm = conn.prepareStatement(sql);
 			pstm.setString(1, maDocGia);
 			pstm.setString(2, "2000-02-02");
+			ResultSet rs = pstm.executeQuery();
+			if(rs.next()){
+				int soLuong = rs.getInt("soLuong");
+				return soLuong;
+			}
+			pstm.close();
+			conn.close();
+			return 0;
+		} catch (SQLException ex) {
+			Logger.getLogger(MuonTraDao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return 0;
+	}
+	public int  countSachDuocMuon(String maSach){
+		String sql = "select  count(*) as soLuong from tbl_muontra where "
+				  + " masach = ?";
+		try {
+			Connection conn = foo.ConnMysql.openConnection();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, maSach);
 			ResultSet rs = pstm.executeQuery();
 			if(rs.next()){
 				int soLuong = rs.getInt("soLuong");

@@ -18,7 +18,6 @@ public class mainFrm extends javax.swing.JFrame {
 	 * Creates new form mainFrm
 	 */
 	private  FisrtPn firstpn;
-	private  SecondPn secondpn;
 	private String maThuThu;
 	public mainFrm(String maThuThu, String hoTen) {
 		initComponents();
@@ -79,7 +78,7 @@ public class mainFrm extends javax.swing.JFrame {
       btnQuanLiSach.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
       btnQuanLiSach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/book.png"))); // NOI18N
       btnQuanLiSach.setText("QUAN LI SACH");
-      btnQuanLiSach.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 153), null, new java.awt.Color(255, 0, 0)));
+      btnQuanLiSach.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
       btnQuanLiSach.setFocusable(false);
       btnQuanLiSach.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
       btnQuanLiSach.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -94,7 +93,7 @@ public class mainFrm extends javax.swing.JFrame {
       btnQuanLiDocGia.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
       btnQuanLiDocGia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete.png"))); // NOI18N
       btnQuanLiDocGia.setText("QUAN LI DOC GIA");
-      btnQuanLiDocGia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 153), null, new java.awt.Color(255, 0, 0)));
+      btnQuanLiDocGia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
       btnQuanLiDocGia.setFocusable(false);
       btnQuanLiDocGia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
       btnQuanLiDocGia.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -108,7 +107,7 @@ public class mainFrm extends javax.swing.JFrame {
       btnQuanLiMuonTra.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
       btnQuanLiMuonTra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/xoa.png"))); // NOI18N
       btnQuanLiMuonTra.setText("QUAN LI MUON TRA");
-      btnQuanLiMuonTra.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 153), null, new java.awt.Color(255, 0, 0)));
+      btnQuanLiMuonTra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
       btnQuanLiMuonTra.setFocusable(false);
       btnQuanLiMuonTra.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
       btnQuanLiMuonTra.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -122,7 +121,7 @@ public class mainFrm extends javax.swing.JFrame {
       btnhahah.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
       btnhahah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/block-user.png"))); // NOI18N
       btnhahah.setText("TRA CUU");
-      btnhahah.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 153), null, new java.awt.Color(255, 0, 0)));
+      btnhahah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
       btnhahah.setFocusable(false);
       btnhahah.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
       btnhahah.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -136,7 +135,7 @@ public class mainFrm extends javax.swing.JFrame {
       btnThongKe.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
       btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/xoa.png"))); // NOI18N
       btnThongKe.setText("THONG KE");
-      btnThongKe.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 153), null, new java.awt.Color(255, 0, 0)));
+      btnThongKe.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
       btnThongKe.setFocusable(false);
       btnThongKe.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
       btnThongKe.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
@@ -150,7 +149,7 @@ public class mainFrm extends javax.swing.JFrame {
       btnTraCuu.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
       btnTraCuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/searching.png"))); // NOI18N
       btnTraCuu.setText("TRA CUU");
-      btnTraCuu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 153), null, new java.awt.Color(255, 0, 0)));
+      btnTraCuu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
       btnTraCuu.setFocusable(false);
       btnTraCuu.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
       btnTraCuu.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);

@@ -154,11 +154,10 @@
             </Property>
             <Property name="text" type="java.lang.String" value="QUAN LI SACH"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder>
-                  <Color PropertyName="highlightInner" blue="99" green="0" red="0" type="rgb"/>
-                  <Color PropertyName="shadowInner" blue="0" green="0" red="ff" type="rgb"/>
-                </BevelBorder>
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                </LineBorder>
               </Border>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
@@ -181,11 +180,10 @@
             </Property>
             <Property name="text" type="java.lang.String" value="QUAN LI DOC GIA"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder>
-                  <Color PropertyName="highlightInner" blue="99" green="0" red="0" type="rgb"/>
-                  <Color PropertyName="shadowInner" blue="0" green="0" red="ff" type="rgb"/>
-                </BevelBorder>
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                </LineBorder>
               </Border>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
@@ -207,11 +205,10 @@
             </Property>
             <Property name="text" type="java.lang.String" value="QUAN LI MUON TRA"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder>
-                  <Color PropertyName="highlightInner" blue="99" green="0" red="0" type="rgb"/>
-                  <Color PropertyName="shadowInner" blue="0" green="0" red="ff" type="rgb"/>
-                </BevelBorder>
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                </LineBorder>
               </Border>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
@@ -233,11 +230,10 @@
             </Property>
             <Property name="text" type="java.lang.String" value="TRA CUU"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder>
-                  <Color PropertyName="highlightInner" blue="99" green="0" red="0" type="rgb"/>
-                  <Color PropertyName="shadowInner" blue="0" green="0" red="ff" type="rgb"/>
-                </BevelBorder>
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                </LineBorder>
               </Border>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
@@ -259,11 +255,10 @@
             </Property>
             <Property name="text" type="java.lang.String" value="THONG KE"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder>
-                  <Color PropertyName="highlightInner" blue="99" green="0" red="0" type="rgb"/>
-                  <Color PropertyName="shadowInner" blue="0" green="0" red="ff" type="rgb"/>
-                </BevelBorder>
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                </LineBorder>
               </Border>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
@@ -285,11 +280,10 @@
             </Property>
             <Property name="text" type="java.lang.String" value="TRA CUU"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder>
-                  <Color PropertyName="highlightInner" blue="99" green="0" red="0" type="rgb"/>
-                  <Color PropertyName="shadowInner" blue="0" green="0" red="ff" type="rgb"/>
-                </BevelBorder>
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder>
+                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                </LineBorder>
               </Border>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>

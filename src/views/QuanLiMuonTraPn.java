@@ -91,7 +91,7 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
       txtMaDocGia = new javax.swing.JTextField();
       jLabel8 = new javax.swing.JLabel();
       btnThem = new javax.swing.JButton();
-      btnLuu = new javax.swing.JButton();
+      btnMuonSach = new javax.swing.JButton();
       btnTraSach = new javax.swing.JButton();
       btnXoa = new javax.swing.JButton();
       btnTimKiem = new javax.swing.JButton();
@@ -111,6 +111,7 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
       txtTenSach = new javax.swing.JLabel();
       txtNgayMuon = new javax.swing.JLabel();
       txtTinhTrang = new javax.swing.JLabel();
+      lbNXB1 = new javax.swing.JLabel();
 
       setBackground(new java.awt.Color(255, 255, 204));
 
@@ -187,15 +188,15 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
          }
       });
 
-      btnLuu.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-      btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/luu.png"))); // NOI18N
-      btnLuu.setText("MUON SACH");
-      btnLuu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-      btnLuu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-      btnLuu.setIconTextGap(20);
-      btnLuu.addActionListener(new java.awt.event.ActionListener() {
+      btnMuonSach.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+      btnMuonSach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/luu.png"))); // NOI18N
+      btnMuonSach.setText("MUON SACH");
+      btnMuonSach.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+      btnMuonSach.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+      btnMuonSach.setIconTextGap(20);
+      btnMuonSach.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnLuuActionPerformed(evt);
+            btnMuonSachActionPerformed(evt);
          }
       });
 
@@ -288,6 +289,11 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
       txtTinhTrang.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
       txtTinhTrang.setText("jLabel1");
 
+      lbNXB1.setBackground(new java.awt.Color(255, 255, 255));
+      lbNXB1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+      lbNXB1.setForeground(new java.awt.Color(255, 0, 0));
+      lbNXB1.setText("* Chỉ được mượn tối đa 3 cuốn sách!!");
+
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
       this.setLayout(layout);
       layout.setHorizontalGroup(
@@ -301,7 +307,7 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                   .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addGap(70, 70, 70)
-                  .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(btnMuonSach, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addGap(54, 54, 54)
                   .addComponent(btnTraSach, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addGap(58, 58, 58)
@@ -324,18 +330,21 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
                   .addGap(55, 55, 55)
                   .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addGap(18, 18, 18)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGap(18, 18, 18)
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(txtMaSach, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(spnSoNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGap(18, 18, 18)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                     .addComponent(lbTacGia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                     .addComponent(lbNXB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                     .addComponent(lbTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                           .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                           .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(txtMaSach, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(spnSoNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                           .addComponent(lbTacGia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                           .addComponent(lbNXB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                           .addComponent(lbTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                     .addComponent(lbNXB1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addGap(46, 46, 46)
                   .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addGap(36, 36, 36)
@@ -370,6 +379,20 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
                         .addComponent(txtMaDocGia, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                      .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                      .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(lbGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(lbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+               .addGroup(layout.createSequentialGroup()
+                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lbTacGia, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -382,24 +405,15 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                           .addComponent(spnSoNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbNgaySinh, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addComponent(lbGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
-                        .addComponent(lbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                           .addComponent(spnSoNgayMuon, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addComponent(lbNXB1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(68, 68, 68)))
             .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(31, 31, 31)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(btnThem)
-               .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(btnMuonSach, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(btnTraSach, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -420,7 +434,7 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
    }//GEN-LAST:event_txtMaDocGiaActionPerformed
 
    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-		btnLuu.setEnabled(true);
+		btnMuonSach.setEnabled(true);
 		JTextField[] listTxt = {
    		txtMaSach,
 		};
@@ -491,7 +505,7 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
 		}
    }//GEN-LAST:event_tblMuonTraMouseClicked
 
-   private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+   private void btnMuonSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMuonSachActionPerformed
 		JTextField[] listTxt = {
    		txtMaDocGia,
    		txtMaSach,
@@ -508,6 +522,11 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
 		}
 			String maSach = txtMaSach.getText();
 			String maDocGia = txtMaDocGia.getText();
+			int soSachChuTra = dao.countDaMuon(maDocGia) - dao.countDaTra(maDocGia);
+			if(soSachChuTra >= 3){
+				MessDialog.showErrorDialog(this, "CHỈ ĐƯỢC MƯƠN TỐi ĐA 3 CUỐN!!", "ERROR");
+				return;
+			}
 			String maThuThu = this.maThuThu;
 			Date ngayMuon = new Date(System.currentTimeMillis());
 			int soNgayMuon = (int)spnSoNgayMuon.getValue();
@@ -521,7 +540,7 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
 				MessDialog.showErrorDialog(this, "THEM THAT BAI!!", "ERROR");
 			}
 			
-   }//GEN-LAST:event_btnLuuActionPerformed
+   }//GEN-LAST:event_btnMuonSachActionPerformed
 
    private void btnTraSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraSachActionPerformed
 		if(txtNgayThucTra.getText().equals("NGAY THUC TRA: null")){
@@ -642,7 +661,10 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
 			}else{
 				lbGioiTinh.setText("GIOI TINH: nu");
 			}
+			ArrayList<MuonTra> muonTraList = dao.findByIdDocGia(docGia.getMaDocGia());
+			initTbl(model, tblMuonTra, headerTbl, muonTraList);
 		}else{
+			initTbl(model, tblMuonTra, headerTbl, list);
 			lbHoTen.setText("");
 			lbDiaChi.setText("");
 			lbEmail.setText("");
@@ -667,7 +689,7 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
 
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
-   private javax.swing.JButton btnLuu;
+   private javax.swing.JButton btnMuonSach;
    private javax.swing.JButton btnThem;
    private javax.swing.JButton btnTimKiem;
    private javax.swing.JButton btnTraSach;
@@ -685,6 +707,7 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
    private javax.swing.JLabel lbGioiTinh;
    private javax.swing.JLabel lbHoTen;
    private javax.swing.JLabel lbNXB;
+   private javax.swing.JLabel lbNXB1;
    private javax.swing.JLabel lbNgaySinh;
    private javax.swing.JLabel lbTacGia;
    private javax.swing.JLabel lbTenSach;

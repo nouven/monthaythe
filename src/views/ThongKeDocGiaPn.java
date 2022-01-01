@@ -252,13 +252,13 @@ public class ThongKeDocGiaPn extends javax.swing.JPanel {
 
    private void cbLuaChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLuaChonActionPerformed
 		int luaChon = cbLuaChon.getSelectedIndex();
-		ArrayList<MuonTra> listMuonTra = new ArrayList<>();
+		ArrayList<String> banDocChuaTraSach = new ArrayList<>();
 		ArrayList<DocGia> listDocGia = new ArrayList<>();
 		if(luaChon == 0){
-			listMuonTra = muonTraDao.chuaTraList();
-			if(listMuonTra != null){
-				listMuonTra.forEach((elmt)->{
-					DocGia docGia = dao.findById(elmt.getMaDocGia());
+			banDocChuaTraSach = muonTraDao.banDocChuaTraSach();
+			if(banDocChuaTraSach != null){
+				banDocChuaTraSach.forEach((elmt)->{
+					DocGia docGia = dao.findById(elmt);
 					listDocGia.add(docGia);
 				});
 			}
@@ -271,10 +271,10 @@ public class ThongKeDocGiaPn extends javax.swing.JPanel {
 			return;
 		}
 		if(luaChon == 1){
-			listMuonTra = muonTraDao.quaHanList();
-			if(listMuonTra != null){
-				listMuonTra.forEach((elmt)->{
-					DocGia docGia = dao.findById(elmt.getMaDocGia());
+			banDocChuaTraSach = muonTraDao.banDocMuonSachQuaHan();
+			if(banDocChuaTraSach != null){
+				banDocChuaTraSach.forEach((elmt)->{
+					DocGia docGia = dao.findById(elmt);
 					listDocGia.add(docGia);
 				});
 			}

@@ -6,6 +6,7 @@ package views;
 
 import controllers.DanhMucDao;
 import controllers.DocGiaDao;
+import controllers.MuonTraDao;
 import controllers.SachDao;
 import foo.Bar;
 import foo.MessDialog;
@@ -38,11 +39,12 @@ public class ThongKeSachPn extends javax.swing.JPanel {
 		"TEN SACH",
 		"TAC GIA",
 		"SO LUONG",
-		"NOI DUNG TOM TAT",
+		"SO SACH DA MUON",
 	};
 	private DefaultTableModel model = new DefaultTableModel();
 	private SachDao dao = new SachDao();
 	private DanhMucDao danhMucDao = new DanhMucDao();
+	private MuonTraDao muonTraDao = new MuonTraDao();
 	private boolean toggleLuu = false;
 	public ThongKeSachPn() {
 		list = new ArrayList<>();
@@ -50,12 +52,12 @@ public class ThongKeSachPn extends javax.swing.JPanel {
 		danhMucList = danhMucDao.selectAll();
 		initComponents();
 		initTbl(model, tblSach, headerTbl, list);
-		initDanhMuc(danhMucList);
 	}
 	private void initTbl(DefaultTableModel model , JTable tbl, String[] headerTbl, ArrayList<Sach> list){
 		model.setRowCount(0);
 		model.setColumnIdentifiers(headerTbl);
 		list.forEach((elmt) -> {
+			int soSachDaMuon = muonTraDao.countSachDuocMuon(elmt.getMaSach());
 			model.addRow(new Object[]{
 				elmt.getMaSach(),
 				elmt.getNxb(),
@@ -63,15 +65,10 @@ public class ThongKeSachPn extends javax.swing.JPanel {
 				elmt.getTenSach(),
 				elmt.getTacGia(),
 				elmt.getSoluong(),
-				elmt.getNdTomTat(),
+				soSachDaMuon,
 			});
 		});
 		tbl.setModel(model);
-	}
-	private void initDanhMuc(ArrayList<DanhMuc> danhMucList){
-		danhMucList.forEach((elmt) -> {
-			cbLuaChon.addItem(elmt.getMaDanhMuc());
-		});
 	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -277,7 +274,17 @@ public class ThongKeSachPn extends javax.swing.JPanel {
    private void cbLuaChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLuaChonActionPerformed
 		int luaChon = cbLuaChon.getSelectedIndex();
 		if(luaChon == 0){
-			
+			ArrayList<String> topSachMuonNhieu = muonTraDao.topSachMuonNhieu();
+			ArrayList<Sach> sachList = new ArrayList<>();
+			if(topSachMuonNhieu != null){
+				for(String i: topSachMuonNhieu){
+					Sach sach = dao.findById(i);
+					if(sach != null){
+						sachList.add(sach);
+					}
+				}
+				initTbl(model, tblSach, headerTbl, sachList);
+			}
 		}
    }//GEN-LAST:event_cbLuaChonActionPerformed
 

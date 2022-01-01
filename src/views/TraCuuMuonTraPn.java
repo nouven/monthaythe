@@ -62,7 +62,9 @@ public class TraCuuMuonTraPn extends javax.swing.JPanel {
 			if(elmt.getNgayThucTra().toString().equals("2000-02-02")){
 				Date curDate = new Date(System.currentTimeMillis());
 				Date ngayMuon = elmt.getNgayMuon();
-				int hash = (-1) * (ngayMuon.hashCode() - curDate.hashCode()) / (24 * 60 * 60 * 1000);
+				int hash =  (-1)*((ngayMuon.hashCode() - curDate.hashCode())) / (24 * 60 * 60 * 1000);
+				System.out.println(hash );
+				System.out.println(elmt.getSoNgayMuon());
 				if((hash - elmt.getSoNgayMuon()) <= 0){
 					tinhTrang = "CHUA TRA";
 				}else{
