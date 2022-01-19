@@ -438,7 +438,6 @@ public class QuanLiDocGiaPn extends javax.swing.JPanel {
    		txtNgaySinh,
    		txtSdt,
 		};
-		Bar.resetTxt(listTxt);
 		this.setEnable();
    }//GEN-LAST:event_btnThemActionPerformed
 

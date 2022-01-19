@@ -197,13 +197,13 @@ public class MainAdFrm extends javax.swing.JFrame {
       txtUsername.setText("username");
 
       txtSdt.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      txtSdt.setText("038929");
+      txtSdt.setText("0794035848");
 
       jLabel2.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
       jLabel2.setText("SDT:");
 
       txtMaThuThu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      txtMaThuThu.setText("TT00");
+      txtMaThuThu.setText("TT001");
       txtMaThuThu.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             txtMaThuThuActionPerformed(evt);
@@ -220,7 +220,7 @@ public class MainAdFrm extends javax.swing.JFrame {
       jLabel4.setText("Email:");
 
       txtEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      txtEmail.setText("email@edu.com");
+      txtEmail.setText("vuthinhnguyen@ecu.com");
 
       txtHoten.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
       txtHoten.setText("ooouvnouven");

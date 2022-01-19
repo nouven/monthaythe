@@ -96,6 +96,7 @@ public class ThongKeSachPn extends javax.swing.JPanel {
       lbKetQua = new javax.swing.JLabel();
       cbLuaChon = new javax.swing.JComboBox<>();
       jLabel10 = new javax.swing.JLabel();
+      btnPrint = new javax.swing.JButton();
 
       setBackground(new java.awt.Color(255, 255, 204));
 
@@ -194,7 +195,7 @@ public class ThongKeSachPn extends javax.swing.JPanel {
       lbKetQua.setText("KET QUA:");
 
       cbLuaChon.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-      cbLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top 3 sach duoc muon nhieu nhat" }));
+      cbLuaChon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Top sách được mượn nhiều nhất" }));
       cbLuaChon.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             cbLuaChonActionPerformed(evt);
@@ -204,6 +205,16 @@ public class ThongKeSachPn extends javax.swing.JPanel {
       jLabel10.setBackground(new java.awt.Color(184, 152, 96));
       jLabel10.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
       jLabel10.setText("LUA CHON:");
+
+      btnPrint.setBackground(new java.awt.Color(0, 255, 0));
+      btnPrint.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+      btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/printer.png"))); // NOI18N
+      btnPrint.setText("excel");
+      btnPrint.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnPrintActionPerformed(evt);
+         }
+      });
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
       this.setLayout(layout);
@@ -218,7 +229,11 @@ public class ThongKeSachPn extends javax.swing.JPanel {
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                      .addComponent(lbKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(cbLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(cbLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPrint)
+                        .addGap(82, 82, 82))))
                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,7 +249,8 @@ public class ThongKeSachPn extends javax.swing.JPanel {
                   .addGap(31, 31, 31)
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                      .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(cbLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                     .addComponent(cbLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addGap(38, 38, 38)
                   .addComponent(lbKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addGap(46, 46, 46)
@@ -288,8 +304,46 @@ public class ThongKeSachPn extends javax.swing.JPanel {
 		}
    }//GEN-LAST:event_cbLuaChonActionPerformed
 
+   private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+      String[] header = {
+         "MA DOC GIA",
+         "HO TEN",
+         "NGAY SINH",
+         "GIOI TINH",
+         "SDT",
+         "EMAIL",
+         "DIA CHI",
+      };
+      ArrayList<String> banDocChuaTraSach = new ArrayList<>();
+      ArrayList<DocGia> listDocGia = new ArrayList<>();
+      if(MessDialog.showComfirmDialog(this, "Xuất file Exel??", "comfirm!!") == 0){
+         if(print == 1){
+            banDocChuaTraSach = muonTraDao.banDocChuaTraSach();
+            if(banDocChuaTraSach != null){
+               banDocChuaTraSach.forEach((elmt)->{
+                  DocGia docGia = dao.findById(elmt);
+                  listDocGia.add(docGia);
+               });
+               Print.Print(header, listDocGia,"Ban_doc_chua_tra_sach.xlsx");
+            }
+         }else if(print == 2){
+            banDocChuaTraSach = muonTraDao.banDocMuonSachQuaHan();
+            if(banDocChuaTraSach != null){
+               banDocChuaTraSach.forEach((elmt)->{
+                  DocGia docGia = dao.findById(elmt);
+                  listDocGia.add(docGia);
+               });
+               Print.Print(header, listDocGia,"Ban_doc_muon_sach_qua_han.xlsx");
+            }
+         }else {
+            return;
+         }
+      }
+   }//GEN-LAST:event_btnPrintActionPerformed
+
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JButton btnPrint;
    private javax.swing.JComboBox<String> cbLuaChon;
    private javax.swing.JLabel jLabel10;
    private javax.swing.JPanel jPanel4;

@@ -371,7 +371,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbNgaySinh">
@@ -382,7 +381,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbDiaChi">
@@ -393,7 +391,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbGioiTinh">
@@ -404,7 +401,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbEmail">
@@ -415,7 +411,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbTenSach">
@@ -426,7 +421,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbTacGia">
@@ -437,7 +431,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbNXB">
@@ -448,7 +441,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator3">
@@ -466,7 +458,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="txtTenDocGia">
@@ -477,7 +468,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="txtTenSach">
@@ -488,7 +478,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="txtNgayMuon">
@@ -499,7 +488,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="txtTinhTrang">
@@ -510,7 +498,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbNXB1">

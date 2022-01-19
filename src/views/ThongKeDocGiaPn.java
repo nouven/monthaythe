@@ -8,6 +8,7 @@ import controllers.DocGiaDao;
 import controllers.MuonTraDao;
 import foo.Bar;
 import foo.MessDialog;
+import foo.Print;
 import foo.Validator;
 import java.util.ArrayList;
 import java.sql.Date;
@@ -17,6 +18,12 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import models.DocGia;
 import models.MuonTra;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -36,6 +43,7 @@ public class ThongKeDocGiaPn extends javax.swing.JPanel {
 	private DocGiaDao dao = new DocGiaDao();
 	private MuonTraDao muonTraDao = new MuonTraDao();
 	private boolean  toggleLuu = false;
+	private int print = 0;
 	public ThongKeDocGiaPn() {
 		list = new ArrayList<>();
 		list = dao.selectAll();
@@ -85,6 +93,7 @@ public class ThongKeDocGiaPn extends javax.swing.JPanel {
       lbKetQua = new javax.swing.JLabel();
       cbLuaChon = new javax.swing.JComboBox<>();
       jLabel9 = new javax.swing.JLabel();
+      btnPrint = new javax.swing.JButton();
 
       setBackground(new java.awt.Color(255, 255, 204));
 
@@ -180,6 +189,16 @@ public class ThongKeDocGiaPn extends javax.swing.JPanel {
       jLabel9.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
       jLabel9.setText("LUA CHON:");
 
+      btnPrint.setBackground(new java.awt.Color(0, 255, 0));
+      btnPrint.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+      btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/printer.png"))); // NOI18N
+      btnPrint.setText("excel");
+      btnPrint.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnPrintActionPerformed(evt);
+         }
+      });
+
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
       this.setLayout(layout);
       layout.setHorizontalGroup(
@@ -191,8 +210,13 @@ public class ThongKeDocGiaPn extends javax.swing.JPanel {
                   .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(cbLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(lbKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE))
+                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(cbLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPrint))))
                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
                .addComponent(jSeparator2))
             .addGap(18, 18, Short.MAX_VALUE)
@@ -212,7 +236,8 @@ public class ThongKeDocGiaPn extends javax.swing.JPanel {
                      .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                           .addComponent(cbLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                           .addComponent(cbLuaChon, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)
                         .addComponent(lbKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)
@@ -255,6 +280,7 @@ public class ThongKeDocGiaPn extends javax.swing.JPanel {
 		ArrayList<String> banDocChuaTraSach = new ArrayList<>();
 		ArrayList<DocGia> listDocGia = new ArrayList<>();
 		if(luaChon == 0){
+			print = 1;
 			banDocChuaTraSach = muonTraDao.banDocChuaTraSach();
 			if(banDocChuaTraSach != null){
 				banDocChuaTraSach.forEach((elmt)->{
@@ -271,6 +297,7 @@ public class ThongKeDocGiaPn extends javax.swing.JPanel {
 			return;
 		}
 		if(luaChon == 1){
+			print = 2;
 			banDocChuaTraSach = muonTraDao.banDocMuonSachQuaHan();
 			if(banDocChuaTraSach != null){
 				banDocChuaTraSach.forEach((elmt)->{
@@ -287,8 +314,46 @@ public class ThongKeDocGiaPn extends javax.swing.JPanel {
 		}
    }//GEN-LAST:event_cbLuaChonActionPerformed
 
+   private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+		String[] header = {
+			"MA DOC GIA",
+			"HO TEN",
+			"NGAY SINH",
+			"GIOI TINH",
+			"SDT",
+			"EMAIL",
+			"DIA CHI",
+		};
+		ArrayList<String> banDocChuaTraSach = new ArrayList<>();
+		ArrayList<DocGia> listDocGia = new ArrayList<>();
+		if(MessDialog.showComfirmDialog(this, "Xuất file Exel??", "comfirm!!") == 0){
+		if(print == 1){
+			banDocChuaTraSach = muonTraDao.banDocChuaTraSach();
+			if(banDocChuaTraSach != null){
+				banDocChuaTraSach.forEach((elmt)->{
+					DocGia docGia = dao.findById(elmt);
+					listDocGia.add(docGia);
+				});
+				Print.Print(header, listDocGia,"Ban_doc_chua_tra_sach.xlsx"); 
+			}
+		}else if(print == 2){
+			banDocChuaTraSach = muonTraDao.banDocMuonSachQuaHan();
+			if(banDocChuaTraSach != null){
+				banDocChuaTraSach.forEach((elmt)->{
+					DocGia docGia = dao.findById(elmt);
+					listDocGia.add(docGia);
+				});
+				Print.Print(header, listDocGia,"Ban_doc_muon_sach_qua_han.xlsx"); 
+			}
+		}else {
+			return;
+		}
+		}
+   }//GEN-LAST:event_btnPrintActionPerformed
+
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JButton btnPrint;
    private javax.swing.JComboBox<String> cbLuaChon;
    private javax.swing.JLabel jLabel9;
    private javax.swing.JPanel jPanel4;

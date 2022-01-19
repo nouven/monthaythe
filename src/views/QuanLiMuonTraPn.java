@@ -237,57 +237,44 @@ public class QuanLiMuonTraPn extends javax.swing.JPanel {
 
       lbHoTen.setBackground(new java.awt.Color(255, 255, 255));
       lbHoTen.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-      lbHoTen.setText("jLabel1");
 
       lbNgaySinh.setBackground(new java.awt.Color(255, 255, 255));
       lbNgaySinh.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-      lbNgaySinh.setText("jLabel1");
 
       lbDiaChi.setBackground(new java.awt.Color(255, 255, 255));
       lbDiaChi.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-      lbDiaChi.setText("jLabel1");
 
       lbGioiTinh.setBackground(new java.awt.Color(255, 255, 255));
       lbGioiTinh.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-      lbGioiTinh.setText("jLabel1");
 
       lbEmail.setBackground(new java.awt.Color(255, 255, 255));
       lbEmail.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-      lbEmail.setText("jLabel1");
 
       lbTenSach.setBackground(new java.awt.Color(255, 255, 255));
       lbTenSach.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-      lbTenSach.setText("jLabel1");
 
       lbTacGia.setBackground(new java.awt.Color(255, 255, 255));
       lbTacGia.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-      lbTacGia.setText("jLabel1");
 
       lbNXB.setBackground(new java.awt.Color(255, 255, 255));
       lbNXB.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-      lbNXB.setText("jLabel1");
 
       jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
       txtNgayThucTra.setBackground(new java.awt.Color(255, 255, 255));
       txtNgayThucTra.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-      txtNgayThucTra.setText("jLabel1");
 
       txtTenDocGia.setBackground(new java.awt.Color(255, 255, 255));
       txtTenDocGia.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-      txtTenDocGia.setText("jLabel1");
 
       txtTenSach.setBackground(new java.awt.Color(255, 255, 255));
       txtTenSach.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-      txtTenSach.setText("jLabel1");
 
       txtNgayMuon.setBackground(new java.awt.Color(255, 255, 255));
       txtNgayMuon.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-      txtNgayMuon.setText("jLabel1");
 
       txtTinhTrang.setBackground(new java.awt.Color(255, 255, 255));
       txtTinhTrang.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-      txtTinhTrang.setText("jLabel1");
 
       lbNXB1.setBackground(new java.awt.Color(255, 255, 255));
       lbNXB1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N

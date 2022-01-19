@@ -418,6 +418,7 @@ public class QuanLiSachPn extends javax.swing.JPanel {
 				txtTenSach.setText(sach.getTenSach());
    			txtNdTomTat.setText(sach.getNdTomTat());
 				spnSoLuong.setValue(sach.getSoluong());
+				cbMaDanhMuc.setSelectedItem(sach.getMaDanhMuc());
 			}
 		}
    }//GEN-LAST:event_tblSachMouseClicked
